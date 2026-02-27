@@ -875,9 +875,9 @@
         and conversations about cloud-native infrastructure. Remote only.
       </p>
       <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#711c18121910141d1d1e01140b311e04051d1e1e1a5f121e1c" class="contact-link">
+        <a href="#" id="emailCopyBtn" class="contact-link">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Email me
+          <span id="emailBtnText">Copy email</span>
         </a>
         <a href="https://linkedin.com/in/michaellopez06" target="_blank" class="contact-link">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -898,15 +898,18 @@
   </footer>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Copy email to clipboard
-    function copyEmail(e) {
+    // Copy email to clipboard - email built in JS to avoid Cloudflare obfuscation
+    const emailUser = 'michael';
+    const emailDomain = 'flashlopez.dev';
+    const fullEmail = emailUser + '@' + emailDomain;
+    document.getElementById('emailCopyBtn').addEventListener('click', function(e) {
       e.preventDefault();
-      navigator.clipboard.writeText('michael@flashlopez.dev').then(() => {
+      navigator.clipboard.writeText(fullEmail).then(() => {
         const btn = document.getElementById('emailBtnText');
         btn.textContent = 'Copied!';
         setTimeout(() => btn.textContent = 'Copy email', 2000);
       });
-    }
+    });
 
     // Custom cursor — disabled on Firefox since it doesn't support it well
     const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
