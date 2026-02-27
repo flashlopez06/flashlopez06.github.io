@@ -421,11 +421,15 @@
     .timeline-item {
       position: relative;
       padding: 0 0 3.5rem 2.5rem;
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 1;
+      transform: translateY(0);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .timeline-item.visible {
+    .timeline-item.animate {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .timeline-item.animate.visible {
       opacity: 1;
       transform: translateY(0);
     }
@@ -953,20 +957,26 @@
     });
 
     // Scroll reveal for timeline
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 150);
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+    // Animate timeline items on scroll - visible by default, animated as enhancement
+    const timelineItems = document.querySelectorAll('.timeline-item');
 
-    // Make all timeline items visible after a short delay as fallback
-    setTimeout(() => {
-      document.querySelectorAll('.timeline-item').forEach(el => el.classList.add('visible'));
-    }, 800);
+    // Only animate if screen is tall enough to actually scroll through them
+    if (window.innerHeight > 600) {
+      timelineItems.forEach(el => el.classList.add('animate'));
 
-    document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+      function checkVisibility() {
+        timelineItems.forEach((el, i) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 50) {
+            setTimeout(() => el.classList.add('visible'), i * 100);
+          }
+        });
+      }
+
+      window.addEventListener('scroll', checkVisibility, { passive: true });
+      checkVisibility();
+      setTimeout(checkVisibility, 300);
+    }
 
     // Smooth nav highlight
     const sections = document.querySelectorAll('section[id]');
