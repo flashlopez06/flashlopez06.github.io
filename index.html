@@ -3,26 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Michael L. Lopez — Senior Platform Engineer</title>
-
-  <!-- SEO: short summary that shows up in Google/Slack/preview cards -->
-  <meta name="description" content="Senior Platform Engineer (Remote). I build internal developer platforms on AWS/EKS with GitOps (ArgoCD), Terraform, CI/CD, and observability—focused on shipping speed, reliability, and operability." />
-
-  <!-- Open Graph: makes LinkedIn/Slack previews look good -->
-  <meta property="og:title" content="Michael L. Lopez — Senior Platform Engineer" />
-  <meta property="og:description" content="I build internal developer platforms on AWS/EKS with GitOps (ArgoCD), Terraform, CI/CD, and observability—focused on shipping speed, reliability, and operability." />
-  <meta property="og:type" content="website" />
-  <!-- Update this to your real domain once hosted -->
-  <meta property="og:url" content="https://flashlopez.dev/" />
-  <!-- Optional: add a real image file to your site and update this path -->
-  <meta property="og:image" content="https://flashlopez.dev/og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -33,98 +17,45 @@
       --font-mono: 'Space Mono', monospace;
       --font-body: 'DM Sans', sans-serif;
     }
-
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
-
-    /* Accessibility: a "skip to content" link for keyboard users */
-    .skip-link {
-      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
-      background: var(--accent); color:#0a0a0f; padding:.75rem 1rem; z-index:99999;
-      font-family: var(--font-mono); font-size:.8rem; letter-spacing:.06em;
-    }
-    .skip-link:focus { left: 1rem; top: 1rem; width:auto; height:auto; }
-
-    /* Optional custom cursor (kept), but disabled if user prefers reduced motion */
     .cursor { width:10px;height:10px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;display:none; }
     .cursor-ring { width:36px;height:36px;border:1.5px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;transition:width .2s,height .2s,opacity .2s;display:none; }
     body.has-custom-cursor { cursor: none; }
     body.has-custom-cursor a, body.has-custom-cursor button { cursor: none; }
     body.has-custom-cursor .cursor, body.has-custom-cursor .cursor-ring { display: block; }
-
-    nav {
-      position:fixed;top:0;left:0;right:0;z-index:200;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:1.25rem 4rem;border-bottom:1px solid var(--border);
-      background:rgba(10,10,15,.88);backdrop-filter:blur(16px);
-    }
+    nav { position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 4rem;border-bottom:1px solid var(--border);background:rgba(10,10,15,.88);backdrop-filter:blur(16px); }
     .nav-logo { font-family:var(--font-mono);font-size:.85rem;color:var(--accent);letter-spacing:.08em;text-decoration:none; }
     .blink { animation:pulse 1.8s ease-in-out infinite; }
-
     .nav-links { display:flex;gap:2.5rem;list-style:none; }
     .nav-links a { font-family:var(--font-mono);font-size:.75rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s; }
     .nav-links a:hover, .nav-links a.active { color:var(--accent); }
-
-    /* Mobile nav button */
-    .nav-toggle {
-      display:none;
-      background:transparent;
-      border:1px solid var(--border);
-      color:var(--text);
-      padding:.55rem .75rem;
-      font-family:var(--font-mono);
-      font-size:.75rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      cursor:pointer;
-    }
-    .nav-toggle:hover { border-color:rgba(74,240,168,.35); color:var(--accent); }
-
-    .nav-drawer {
-      display:none;
-      position:fixed;
-      top:72px;
-      left:0; right:0;
-      background:rgba(10,10,15,.97);
-      border-bottom:1px solid var(--border);
-      padding:1rem 1.25rem;
-      z-index:199;
-    }
-    .nav-drawer ul { list-style:none; display:flex; flex-direction:column; gap:.75rem; }
-    .nav-drawer a { font-family:var(--font-mono);font-size:.78rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase; }
-    .nav-drawer a:hover { color:var(--accent); }
-    .nav-drawer.open { display:block; }
-
     .hero { min-height:100vh;display:flex;align-items:center;padding:8rem 4rem 4rem;position:relative;overflow:hidden; }
     .hero-grid { position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.35;mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black 20%,transparent 100%); }
     .hero-glow { position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(74,240,168,.07) 0%,transparent 70%);top:50%;left:55%;transform:translate(-50%,-50%);pointer-events:none; }
-    .hero-content { position:relative;max-width:980px; }
+    .hero-content { position:relative;max-width:900px; }
     .hero-tag { font-family:var(--font-mono);font-size:.75rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;opacity:0;animation:fadeUp .6s ease .2s forwards; }
     .hero-tag::before { content:'';display:block;width:32px;height:1px;background:var(--accent); }
     .hero-name { font-family:var(--font-display);font-size:clamp(3.5rem,8vw,7rem);font-weight:800;line-height:.95;letter-spacing:-.03em;margin-bottom:1.5rem;opacity:0;animation:fadeUp .7s ease .35s forwards; }
     .hero-name span { display:block;color:transparent;-webkit-text-stroke:1px rgba(74,240,168,.4); }
-    .hero-title { font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:500;color:var(--muted);margin-bottom:1.5rem;opacity:0;animation:fadeUp .7s ease .5s forwards; }
+    .hero-title { font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:500;color:var(--muted);margin-bottom:2rem;opacity:0;animation:fadeUp .7s ease .5s forwards; }
     .hero-title strong { color:var(--accent2);font-weight:600; }
-    .hero-desc { max-width:640px;font-size:1rem;color:var(--muted);line-height:1.75;margin-bottom:2.25rem;font-weight:300;opacity:0;animation:fadeUp .7s ease .65s forwards; }
-
+    .hero-desc { max-width:560px;font-size:1rem;color:var(--muted);line-height:1.75;margin-bottom:3rem;font-weight:300;opacity:0;animation:fadeUp .7s ease .65s forwards; }
     .hero-ctas { display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .7s ease .8s forwards; }
     .btn-primary { display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.75rem;background:var(--accent);color:#0a0a0f;font-family:var(--font-mono);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:none;transition:transform .2s,box-shadow .2s; }
     .btn-primary:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(74,240,168,.25); }
     .btn-secondary { display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.75rem;background:transparent;color:var(--text);font-family:var(--font-mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border);transition:border-color .2s,color .2s; }
     .btn-secondary:hover { border-color:var(--accent2);color:var(--accent2); }
-
     .hero-stats { position:absolute;right:4rem;bottom:6rem;display:flex;flex-direction:column;gap:1.5rem;opacity:0;animation:fadeLeft .8s ease 1s forwards; }
     .stat { text-align:right; }
     .stat-num { font-family:var(--font-display);font-size:2.5rem;font-weight:800;line-height:1; }
     .stat-num span { color:var(--accent); }
     .stat-label { font-family:var(--font-mono);font-size:.65rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:.2rem; }
-
     section { padding:6rem 4rem;border-top:1px solid var(--border); }
     .section-header { display:flex;align-items:center;gap:1rem;margin-bottom:3.5rem; }
     .section-num { font-family:var(--font-mono);font-size:.7rem;color:var(--accent);letter-spacing:.15em; }
     .section-title { font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;letter-spacing:-.02em; }
     .section-line { flex:1;height:1px;background:var(--border);margin-left:1rem; }
-
     .about-grid { display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start; }
     .about-text p { color:var(--muted);font-size:1.05rem;line-height:1.8;margin-bottom:1.25rem;font-weight:300; }
     .about-text p strong { color:var(--text);font-weight:500; }
@@ -135,7 +66,6 @@
     .about-card:hover::before { transform:scaleY(1); }
     .about-card-title { font-family:var(--font-mono);font-size:.7rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem; }
     .about-card-text { font-size:.95rem;color:var(--text); }
-
     .stack-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border); }
     .stack-category { background:var(--card);padding:1.75rem 2rem;transition:background .2s; }
     .stack-category:hover { background:var(--bg3); }
@@ -144,34 +74,6 @@
     .stack-tag { font-family:var(--font-mono);font-size:.72rem;color:var(--text);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:.3rem .65rem;letter-spacing:.05em;transition:background .15s,border-color .15s,color .15s; }
     .stack-tag:hover { background:rgba(74,240,168,.08);border-color:rgba(74,240,168,.35);color:var(--accent); }
     .stack-tag.hot { border-color:rgba(59,143,255,.4);color:var(--accent2);background:rgba(59,143,255,.06); }
-
-    /* Simple diagram card */
-    .diagram-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-      overflow: hidden;
-    }
-    .diagram-title {
-      font-family: var(--font-mono);
-      font-size: .7rem;
-      color: var(--accent);
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .diagram-sub {
-      color: var(--muted);
-      font-size: .95rem;
-      margin-bottom: 1.25rem;
-      font-weight: 300;
-      line-height: 1.7;
-      max-width: 780px;
-    }
-    .diagram-wrap { width: 100%; overflow-x:auto; padding-bottom:.25rem; }
-    .diagram-wrap svg { min-width: 820px; max-width: 980px; width: 100%; height: auto; display:block; }
-
-    /* Timeline */
     .timeline { position:relative;padding-left:2rem; }
     .timeline::before { content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--accent),var(--border),transparent); }
     .timeline-item { position:relative;padding:0 0 3.5rem 2.5rem; }
@@ -186,23 +88,22 @@
     .achievement { display:flex;gap:.75rem;align-items:flex-start;font-size:.9rem;color:var(--muted); }
     .achievement::before { content:'▸';color:var(--accent);font-size:.75rem;margin-top:.15rem;flex-shrink:0; }
     .achievement strong { color:var(--text);font-weight:500; }
-
-    /* Resume */
     .resume-viewer { background:var(--card);border:1px solid var(--border);overflow:hidden; }
     .resume-toolbar { display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding:1rem 1.5rem;border-bottom:1px solid var(--border);background:var(--bg2); }
     .resume-toolbar-left { font-family:var(--font-mono);font-size:.72rem;color:var(--muted);letter-spacing:.08em; }
     .resume-toolbar-left span { color:var(--accent); }
-    .resume-actions { display:flex;gap:.75rem; }
+    .resume-actions { display:flex;align-items:center;gap:.75rem; }
+    .resume-pageinfo { font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:.06em;white-space:nowrap; }
     .resume-btn { display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border);color:var(--muted);background:transparent;transition:border-color .2s,color .2s,background .2s; }
     .resume-btn:hover { border-color:var(--accent);color:var(--accent);background:rgba(74,240,168,.05); }
     .resume-btn.primary { background:var(--accent);color:#0a0a0f;border-color:var(--accent);font-weight:700; }
     .resume-btn.primary:hover { background:#2dd48a;border-color:#2dd48a; }
     .resume-btn svg { width:12px;height:12px;flex-shrink:0; }
-    .resume-embed { width:100%;height:700px;border:none;display:block;background:#1a1a2e; }
-    .resume-fallback { display:none;padding:3rem;text-align:center;font-family:var(--font-mono);font-size:.8rem;color:var(--muted); }
-    .resume-fallback a { color:var(--accent); }
-
-    /* Contact */
+    button.resume-btn { cursor:pointer; }
+    .resume-canvas-wrap { position:relative;background:#f5f5f0;display:flex;justify-content:center;min-height:400px; }
+    #resumeCanvas { display:block;max-width:100%;height:auto;box-shadow:0 4px 32px rgba(0,0,0,.4); }
+    .resume-loading { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--card); }
+    .resume-loading-inner { font-family:var(--font-mono);font-size:.85rem;color:var(--muted);letter-spacing:.1em; }
     .contact-inner { max-width:640px;margin:0 auto;text-align:center; }
     .contact-title { font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem;letter-spacing:-.02em; }
     .contact-sub { color:var(--muted);font-size:1rem;font-weight:300;margin-bottom:2.5rem;line-height:1.7; }
@@ -211,545 +112,206 @@
     .contact-link:hover { border-color:var(--accent);color:var(--accent);background:rgba(74,240,168,.04); }
     .contact-link svg { width:14px;height:14px;flex-shrink:0; }
     button.contact-link { font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card); }
-
     footer { padding:2rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between; }
     .footer-text { font-family:var(--font-mono);font-size:.65rem;color:var(--muted);letter-spacing:.1em; }
     .footer-accent { color:var(--accent); }
-
     @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
     @keyframes fadeLeft { from{opacity:0;transform:translateX(24px)} to{opacity:1;transform:translateX(0)} }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
-
-    /* Reduced motion: no animations, no smooth scroll, no cursor gimmicks */
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      * { animation: none !important; transition: none !important; }
-      .cursor, .cursor-ring { display:none !important; }
-      body.has-custom-cursor { cursor:auto; }
-      body.has-custom-cursor a, body.has-custom-cursor button { cursor:pointer; }
-    }
-
-    @media(max-width:900px){
-      nav{padding:1.25rem 2rem}
-      .nav-links{gap:1.5rem}
-      .hero{padding:7rem 2rem 12rem}
-      .hero-stats{right:2rem;bottom:3rem;flex-direction:row;gap:2rem}
-      section{padding:4rem 2rem}
-      .about-grid{grid-template-columns:1fr;gap:2.5rem}
-      footer{padding:1.5rem 2rem;flex-direction:column;gap:.5rem;text-align:center}
-      .resume-embed{height:500px}
-    }
-    @media(max-width:600px){
-      .nav-links{display:none}
-      .nav-toggle{display:inline-flex}
-      .hero-stats{display:none}
-      .resume-embed{height:380px}
-    }
+    /* ── MOBILE NAV ── */
+    .nav-toggle { display:none;background:none;border:1px solid var(--border);color:var(--text);padding:.4rem .6rem;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.05em; }
+    .nav-drawer { display:none;position:fixed;top:0;right:0;bottom:0;width:260px;background:var(--bg2);border-left:1px solid var(--border);z-index:300;padding:5rem 2rem 2rem;flex-direction:column;gap:1.5rem; }
+    .nav-drawer.open { display:flex; }
+    .drawer-link { font-family:var(--font-mono);font-size:.85rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s; }
+    .drawer-link:hover { color:var(--accent); }
+    .nav-overlay { display:none;position:fixed;inset:0;z-index:299;background:rgba(0,0,0,.5); }
+    .nav-overlay.open { display:block; }
+        @media(max-width:900px){nav{padding:1.25rem 2rem}.nav-links{gap:1.5rem}.hero{padding:7rem 2rem 12rem}.hero-stats{right:2rem;bottom:3rem;flex-direction:row;gap:2rem}section{padding:4rem 2rem}.about-grid{grid-template-columns:1fr;gap:2.5rem}footer{padding:1.5rem 2rem;flex-direction:column;gap:.5rem;text-align:center}.resume-embed{height:500px}}
+    @media(max-width:600px){.nav-links{display:none}.nav-toggle{display:inline-flex}.hero-stats{display:none}}
   </style>
 </head>
-
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-  <div class="cursor" id="cursor" aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
-
-  <nav aria-label="Primary">
-    <a href="#home" class="nav-logo" aria-label="Go to top">ML.<span class="blink">_</span></a>
-
-    <button
-      class="nav-toggle"
-      id="navToggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="navDrawer"
-      aria-label="Open navigation menu"
-    >
-      Menu
-    </button>
-
-    <ul class="nav-links" role="list">
+  <nav>
+    <a href="#home" class="nav-logo">ML.<span class="blink">_</span></a>
+    <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#stack">Stack</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#resume">Resume</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Open menu">MENU</button>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+  <nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+    <a href="#about" class="drawer-link">About</a>
+    <a href="#stack" class="drawer-link">Stack</a>
+    <a href="#experience" class="drawer-link">Experience</a>
+    <a href="#resume" class="drawer-link">Resume</a>
+    <a href="#contact" class="drawer-link">Contact</a>
   </nav>
 
-  <!-- Mobile nav drawer -->
-  <div class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
-    <ul role="list">
-      <li><a href="#about" class="drawer-link">About</a></li>
-      <li><a href="#stack" class="drawer-link">Stack</a></li>
-      <li><a href="#experience" class="drawer-link">Experience</a></li>
-      <li><a href="#resume" class="drawer-link">Resume</a></li>
-      <li><a href="#contact" class="drawer-link">Contact</a></li>
-    </ul>
-  </div>
+  <section class="hero" id="home">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Available for consulting &amp; select opportunities</div>
+      <h1 class="hero-name">Michael<br/><span>Lopez</span></h1>
+      <p class="hero-title">Senior Platform Engineer &nbsp;/&nbsp; <strong>Cloud Infrastructure &amp; DevOps</strong></p>
+      <p class="hero-desc">I build internal developer platforms that let engineering teams ship faster. 14 years of experience turning complex cloud infrastructure into clean, automated systems — from EKS and ArgoCD to Terraform-driven provisioning at scale.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Get in touch
+        </a>
+        <a href="#experience" class="btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          View experience
+        </a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">14<span>+</span></div><div class="stat-label">Years Experience</div></div>
+      <div class="stat"><div class="stat-num">6<span>+</span></div><div class="stat-label">Years DevOps</div></div>
+      <div class="stat"><div class="stat-num">&#8734;</div><div class="stat-label">Coffee Consumed</div></div>
+    </div>
+  </section>
 
-  <main id="main">
-    <section class="hero" id="home" aria-label="Hero">
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="hero-glow" aria-hidden="true"></div>
+  <section id="about">
+    <div class="section-header"><span class="section-num">01</span><h2 class="section-title">About</h2><div class="section-line"></div></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a Senior Platform Engineer based in <strong>Florida</strong>, working fully remote, specializing in <strong>internal developer platforms, cloud-native infrastructure, and GitOps automation</strong>. My work sits at the intersection of what developers need to ship confidently and what operations teams need to sleep at night.</p>
+        <p>Before moving into DevOps, I spent 8 years in application support and operations — which means I understand production systems from the inside out. I don't just build pipelines; I build systems that are operable, documented, and designed to be handed off cleanly.</p>
+        <p>Currently at <strong>Trimble</strong>, where I own the full platform stack: Kubernetes (EKS), ArgoCD, Concourse CI, and Confluent. I'm actively deepening my work in <strong>AI-augmented platform tooling</strong> — building smarter internal workflows with the latest generation of LLMs and automation tools.</p>
+        <p>I hold a <strong>BS in Computer Engineering from the University of Miami</strong> and am currently pursuing AWS Solutions Architect and CKA certifications.</p>
+      </div>
+      <div class="about-cards">
+        <div class="about-card"><div class="about-card-title">Specialty</div><div class="about-card-text">Internal Developer Platforms (IDP) · GitOps · Cloud-Native Infrastructure</div></div>
+        <div class="about-card"><div class="about-card-title">Cloud</div><div class="about-card-text">AWS</div></div>
+        <div class="about-card"><div class="about-card-title">Background</div><div class="about-card-text">6 yrs DevOps · 8 yrs App Support &amp; Ops · BS Computer Engineering, U of Miami</div></div>
+        <div class="about-card"><div class="about-card-title">Currently Learning</div><div class="about-card-text">AI-powered infrastructure tooling · AWS SAA · CKA</div></div>
+        <div class="about-card"><div class="about-card-title">Location</div><div class="about-card-text">Florida · Fully Remote</div></div>
+      </div>
+    </div>
+  </section>
 
-      <div class="hero-content">
-        <div class="hero-tag">Available for consulting &amp; select opportunities</div>
+  <section id="stack">
+    <div class="section-header"><span class="section-num">02</span><h2 class="section-title">Tech Stack</h2><div class="section-line"></div></div>
+    <div class="stack-grid">
+      <div class="stack-category"><div class="stack-cat-label">Cloud &amp; Infrastructure</div><div class="stack-tags"><span class="stack-tag hot">AWS</span><span class="stack-tag hot">Kubernetes</span><span class="stack-tag">Docker</span><span class="stack-tag">Linux (RHEL/Ubuntu)</span></div></div>
+      <div class="stack-category"><div class="stack-cat-label">IaC &amp; Automation</div><div class="stack-tags"><span class="stack-tag hot">Terraform</span><span class="stack-tag">Helm</span><span class="stack-tag">Shell/Bash</span><span class="stack-tag">Python</span></div></div>
+      <div class="stack-category"><div class="stack-cat-label">CI/CD &amp; GitOps</div><div class="stack-tags"><span class="stack-tag hot">ArgoCD</span><span class="stack-tag">Concourse CI</span><span class="stack-tag">Jenkins</span><span class="stack-tag">Helm Charts</span></div></div>
+      <div class="stack-category"><div class="stack-cat-label">Observability</div><div class="stack-tags"><span class="stack-tag">Sumo Logic</span><span class="stack-tag">New Relic</span><span class="stack-tag">Grafana</span><span class="stack-tag">PagerDuty</span><span class="stack-tag">CloudWatch</span></div></div>
+      <div class="stack-category"><div class="stack-cat-label">Event Streaming</div><div class="stack-tags"><span class="stack-tag hot">Confluent Cloud</span><span class="stack-tag">Confluent for K8s</span><span class="stack-tag">Apache Kafka</span></div></div>
+      <div class="stack-category"><div class="stack-cat-label">Languages</div><div class="stack-tags"><span class="stack-tag">Python</span><span class="stack-tag">Shell/Bash</span><span class="stack-tag">SQL</span><span class="stack-tag">YAML</span><span class="stack-tag">Java</span></div></div>
+    </div>
+  </section>
 
-        <h1 class="hero-name">Michael<br /><span>Lopez</span></h1>
-
-        <p class="hero-title">
-          Senior Platform Engineer &nbsp;/&nbsp; <strong>Cloud Infrastructure &amp; DevOps</strong>
-        </p>
-
-        <!-- Slightly tightened copy: more direct impact -->
-        <p class="hero-desc">
-          I build internal developer platforms that help teams ship faster and operate safer.
-          14 years in production systems, turning complex AWS/EKS infrastructure into clean, automated GitOps workflows with Terraform, ArgoCD, and strong observability.
-        </p>
-
-        <div class="hero-ctas">
-          <!-- Move resume download to hero (recruiter-friendly) -->
-          <a href="Michael-Lopez-Resume.pdf" download="Michael-Lopez-Resume.pdf" class="btn-primary" aria-label="Download resume PDF">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            Download resume
-          </a>
-
-          <a href="#contact" class="btn-secondary" aria-label="Jump to contact section">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-            Get in touch
-          </a>
-
-          <a href="#experience" class="btn-secondary" aria-label="Jump to experience section">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="3" width="20" height="14" rx="2"/>
-              <line x1="8" y1="21" x2="16" y2="21"/>
-              <line x1="12" y1="17" x2="12" y2="21"/>
-            </svg>
-            View experience
-          </a>
+  <section id="experience">
+    <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Experience</h2><div class="section-line"></div></div>
+    <div class="timeline">
+      <div class="timeline-item timeline-current">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header"><div class="timeline-role">Senior Platform Engineer</div><div class="timeline-dates">SEP 2024 — PRESENT</div></div>
+        <div class="timeline-company">TRIMBLE · REMOTE</div>
+        <div class="timeline-body">Lead platform engineering for a cloud-native, multi-team environment. Own the full lifecycle of developer tooling and infrastructure services from provisioning through operational handoff.</div>
+        <div class="timeline-achievements">
+          <div class="achievement"><strong>Deployment time:</strong> 1 day → 10 minutes via ArgoCD GitOps implementation</div>
+          <div class="achievement"><strong>MTTR:</strong> 6 hours → 5 minutes through automated recovery workflows</div>
+          <div class="achievement"><strong>Infra provisioning:</strong> 1 day → 30 minutes with reusable Terraform modules</div>
+          <div class="achievement">Own and operate EKS, ArgoCD, Concourse CI, and Confluent at scale</div>
+          <div class="achievement">Define platform adoption strategy across engineering and operations teams</div>
         </div>
       </div>
-
-      <div class="hero-stats" aria-label="Highlights">
-        <div class="stat">
-          <div class="stat-num">14<span>+</span></div>
-          <div class="stat-label">Years Experience</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">6<span>+</span></div>
-          <div class="stat-label">Years DevOps</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">&#8734;</div>
-          <div class="stat-label">Coffee Consumed</div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header"><div class="timeline-role">DevOps Engineer</div><div class="timeline-dates">JUL 2019 — SEP 2024</div></div>
+        <div class="timeline-company">TRIMBLE · REMOTE</div>
+        <div class="timeline-body">Grew from individual contributor to platform owner over 5 years, driving the shift from manual deployments to fully automated, GitOps-driven infrastructure.</div>
+        <div class="timeline-achievements">
+          <div class="achievement">Designed and scaled CI/CD pipelines with Jenkins and Concourse CI across multiple product teams</div>
+          <div class="achievement">Spearheaded application migration to Kubernetes, establishing Helm chart standards adopted org-wide</div>
+          <div class="achievement">Pioneered Terraform IaC adoption, authoring foundational modules that standardized all AWS provisioning</div>
         </div>
       </div>
-    </section>
-
-    <section id="about">
-      <div class="section-header">
-        <span class="section-num">01</span>
-        <h2 class="section-title">About</h2>
-        <div class="section-line"></div>
-      </div>
-
-      <div class="about-grid">
-        <div class="about-text">
-          <p>
-            I'm a Senior Platform Engineer based in <strong>Florida</strong>, working fully remote, specializing in
-            <strong>internal developer platforms, cloud-native infrastructure, and GitOps automation</strong>.
-            My work sits at the intersection of what developers need to ship confidently and what operations teams need to sleep at night.
-          </p>
-          <p>
-            Before moving into DevOps, I spent 8 years in application support and operations — which means I understand production systems from the inside out.
-            I don't just build pipelines; I build systems that are operable, documented, and designed to be handed off cleanly.
-          </p>
-          <p>
-            Currently at <strong>Trimble</strong>, where I own the full platform stack: Kubernetes (EKS), ArgoCD, Concourse CI, and Confluent.
-            I'm actively deepening my work in <strong>AI-augmented platform tooling</strong> — building smarter internal workflows with the latest generation of LLMs and automation tools.
-          </p>
-          <p>
-            I hold a <strong>BS in Computer Engineering from the University of Miami</strong> and am currently pursuing AWS Solutions Architect and CKA certifications.
-          </p>
-        </div>
-
-        <div class="about-cards">
-          <div class="about-card">
-            <div class="about-card-title">Specialty</div>
-            <div class="about-card-text">Internal Developer Platforms (IDP) · GitOps · Cloud-Native Infrastructure</div>
-          </div>
-          <div class="about-card">
-            <div class="about-card-title">Cloud</div>
-            <div class="about-card-text">AWS</div>
-          </div>
-          <div class="about-card">
-            <div class="about-card-title">Background</div>
-            <div class="about-card-text">6 yrs DevOps · 8 yrs App Support &amp; Ops · BS Computer Engineering, U of Miami</div>
-          </div>
-          <div class="about-card">
-            <div class="about-card-title">Currently Learning</div>
-            <div class="about-card-text">AI-powered infrastructure tooling · AWS SAA · CKA</div>
-          </div>
-          <div class="about-card">
-            <div class="about-card-title">Location</div>
-            <div class="about-card-text">Florida · Fully Remote (open to commute for the right role)</div>
-          </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header"><div class="timeline-role">Senior Application Support Engineer</div><div class="timeline-dates">APR 2018 — APR 2019</div></div>
+        <div class="timeline-company">SIGMA SYSTEMS · TORONTO (REMOTE)</div>
+        <div class="timeline-body">Primary technical escalation for enterprise clients. Automated deployment workflows and optimized production SQL diagnostics.</div>
+        <div class="timeline-achievements">
+          <div class="achievement">Reduced manual deployment effort by <strong>30%</strong> via Shell scripting automation</div>
         </div>
       </div>
-    </section>
-
-    <!-- Added: diagram + ownership (recruiter/hiring manager friendly) -->
-    <section id="platform">
-      <div class="section-header">
-        <span class="section-num">02</span>
-        <h2 class="section-title">Platform at a glance</h2>
-        <div class="section-line"></div>
-      </div>
-
-      <div class="diagram-card">
-        <div class="diagram-title">How I think about platforms</div>
-        <p class="diagram-sub">
-          A simple view of a typical flow I design and operate: code changes go through GitOps, land on Kubernetes,
-          and are covered end-to-end with metrics, logs, alerts, and on-call workflows.
-        </p>
-
-        <div class="diagram-wrap" aria-label="Architecture diagram">
-          <!-- Inline SVG (no external assets needed) -->
-          <svg viewBox="0 0 1100 220" role="img" aria-label="Dev to GitOps to EKS to Observability to PagerDuty flow diagram" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="g" x1="0" x2="1">
-                <stop offset="0" stop-color="#4af0a8" stop-opacity="0.18"/>
-                <stop offset="1" stop-color="#3b8fff" stop-opacity="0.14"/>
-              </linearGradient>
-            </defs>
-
-            <rect x="0" y="0" width="1100" height="220" rx="18" fill="url(#g)" stroke="#1e1e2e"/>
-
-            <!-- Nodes -->
-            <g font-family="Space Mono, monospace" font-size="18" fill="#e8e8f0">
-              <rect x="40" y="70" width="190" height="80" rx="14" fill="#13131c" stroke="#1e1e2e"/>
-              <text x="70" y="117">Developer</text>
-
-              <rect x="260" y="70" width="190" height="80" rx="14" fill="#13131c" stroke="#1e1e2e"/>
-              <text x="305" y="117">Git (PR)</text>
-
-              <rect x="480" y="70" width="190" height="80" rx="14" fill="#13131c" stroke="#1e1e2e"/>
-              <text x="510" y="117">ArgoCD</text>
-
-              <rect x="700" y="70" width="190" height="80" rx="14" fill="#13131c" stroke="#1e1e2e"/>
-              <text x="740" y="117">EKS</text>
-
-              <rect x="920" y="70" width="140" height="80" rx="14" fill="#13131c" stroke="#1e1e2e"/>
-              <text x="940" y="107" font-size="16">Observability</text>
-              <text x="950" y="132" font-size="14" fill="#9090b0">metrics/logs</text>
-            </g>
-
-            <!-- Arrows -->
-            <g stroke="#4af0a8" stroke-width="3" fill="none" stroke-linecap="round">
-              <path d="M230 110 H260" />
-              <path d="M450 110 H480" />
-              <path d="M670 110 H700" />
-              <path d="M890 110 H920" />
-              <path d="M1055 150 C1000 200, 820 210, 760 170" stroke="#3b8fff" />
-            </g>
-
-            <!-- Arrow heads -->
-            <g fill="#4af0a8">
-              <polygon points="255,110 245,104 245,116" />
-              <polygon points="475,110 465,104 465,116" />
-              <polygon points="695,110 685,104 685,116" />
-              <polygon points="915,110 905,104 905,116" />
-            </g>
-
-            <!-- Callout -->
-            <g font-family="DM Sans, sans-serif" font-size="14" fill="#9090b0">
-              <text x="725" y="195">Alerts → PagerDuty / On-call workflows</text>
-            </g>
-          </svg>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header"><div class="timeline-role">DevOps / Automation Engineer</div><div class="timeline-dates">FEB 2013 — APR 2018</div></div>
+        <div class="timeline-company">TRACFONE WIRELESS · MEDLEY, FL</div>
+        <div class="timeline-body">Built CI/CD infrastructure for a high-volume consumer wireless platform. Mentored junior engineers and led DevOps practice adoption.</div>
+        <div class="timeline-achievements">
+          <div class="achievement">Reduced deployment error rate by <strong>40%</strong> through Python and Shell automation</div>
+          <div class="achievement">Designed Jenkins + AnthillPro pipelines across 10+ application teams</div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="stack-grid" style="margin-top:1.25rem;">
-        <div class="stack-category">
-          <div class="stack-cat-label">What I own / operate</div>
-          <div class="stack-tags">
-            <span class="stack-tag">EKS clusters &amp; upgrades</span>
-            <span class="stack-tag">GitOps rollout &amp; standards</span>
-            <span class="stack-tag">CI/CD (Concourse/Jenkins)</span>
-            <span class="stack-tag">Terraform modules &amp; provisioning</span>
-            <span class="stack-tag">Observability + alerting</span>
-            <span class="stack-tag">Confluent/Kafka operations</span>
-          </div>
-        </div>
-        <div class="stack-category">
-          <div class="stack-cat-label">How I measure impact</div>
-          <div class="stack-tags">
-            <span class="stack-tag hot">Deploy time</span>
-            <span class="stack-tag hot">MTTR</span>
-            <span class="stack-tag">Change failure rate</span>
-            <span class="stack-tag">Alert noise</span>
-            <span class="stack-tag">Lead time for changes</span>
-          </div>
-        </div>
-        <div class="stack-category">
-          <div class="stack-cat-label">What you get hiring me</div>
-          <div class="stack-tags">
-            <span class="stack-tag">Fewer manual steps</span>
-            <span class="stack-tag">More repeatable deployments</span>
-            <span class="stack-tag">Clear handoff + docs</span>
-            <span class="stack-tag">Better on-call outcomes</span>
-            <span class="stack-tag">Standards that scale</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Renumbered sections so nav order stays correct (About -> Platform -> Stack etc.) -->
-    <section id="stack">
-      <div class="section-header">
-        <span class="section-num">03</span>
-        <h2 class="section-title">Tech Stack</h2>
-        <div class="section-line"></div>
-      </div>
-
-      <div class="stack-grid">
-        <div class="stack-category">
-          <div class="stack-cat-label">Cloud &amp; Infrastructure</div>
-          <div class="stack-tags">
-            <span class="stack-tag hot">AWS</span>
-            <span class="stack-tag hot">Kubernetes</span>
-            <span class="stack-tag">Docker</span>
-            <span class="stack-tag">Linux (RHEL/Ubuntu)</span>
-          </div>
-        </div>
-
-        <div class="stack-category">
-          <div class="stack-cat-label">IaC &amp; Automation</div>
-          <div class="stack-tags">
-            <span class="stack-tag hot">Terraform</span>
-            <span class="stack-tag">Helm</span>
-            <span class="stack-tag">Shell/Bash</span>
-            <span class="stack-tag">Python</span>
-          </div>
-        </div>
-
-        <div class="stack-category">
-          <div class="stack-cat-label">CI/CD &amp; GitOps</div>
-          <div class="stack-tags">
-            <span class="stack-tag hot">ArgoCD</span>
-            <span class="stack-tag">Concourse CI</span>
-            <span class="stack-tag">Jenkins</span>
-            <span class="stack-tag">Helm Charts</span>
-          </div>
-        </div>
-
-        <div class="stack-category">
-          <div class="stack-cat-label">Observability</div>
-          <div class="stack-tags">
-            <span class="stack-tag">Sumo Logic</span>
-            <span class="stack-tag">New Relic</span>
-            <span class="stack-tag">Grafana</span>
-            <span class="stack-tag">PagerDuty</span>
-            <span class="stack-tag">CloudWatch</span>
-          </div>
-        </div>
-
-        <div class="stack-category">
-          <div class="stack-cat-label">Event Streaming</div>
-          <div class="stack-tags">
-            <span class="stack-tag hot">Confluent Cloud</span>
-            <span class="stack-tag">Confluent for K8s</span>
-            <span class="stack-tag">Apache Kafka</span>
-          </div>
-        </div>
-
-        <div class="stack-category">
-          <div class="stack-cat-label">Languages</div>
-          <div class="stack-tags">
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">Shell/Bash</span>
-            <span class="stack-tag">SQL</span>
-            <span class="stack-tag">YAML</span>
-            <span class="stack-tag">Java</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="section-header">
-        <span class="section-num">04</span>
-        <h2 class="section-title">Experience</h2>
-        <div class="section-line"></div>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-item timeline-current">
-          <div class="timeline-dot"></div>
-          <div class="timeline-header">
-            <div class="timeline-role">Senior Platform Engineer</div>
-            <div class="timeline-dates">SEP 2024 — PRESENT</div>
-          </div>
-          <div class="timeline-company">TRIMBLE · REMOTE</div>
-          <div class="timeline-body">
-            Lead platform engineering for a cloud-native, multi-team environment. Own the full lifecycle of developer tooling and infrastructure services from provisioning through operational handoff.
-          </div>
-          <div class="timeline-achievements">
-            <div class="achievement"><strong>Deployment time:</strong> 1 day → 10 minutes via ArgoCD GitOps implementation</div>
-            <div class="achievement"><strong>MTTR:</strong> 6 hours → 5 minutes through automated recovery workflows</div>
-            <div class="achievement"><strong>Infra provisioning:</strong> 1 day → 30 minutes with reusable Terraform modules</div>
-            <div class="achievement">Own and operate EKS, ArgoCD, Concourse CI, and Confluent at scale</div>
-            <div class="achievement">Define platform adoption strategy across engineering and operations teams</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-header">
-            <div class="timeline-role">DevOps Engineer</div>
-            <div class="timeline-dates">JUL 2019 — SEP 2024</div>
-          </div>
-          <div class="timeline-company">TRIMBLE · REMOTE</div>
-          <div class="timeline-body">
-            Grew from individual contributor to platform owner over 5 years, driving the shift from manual deployments to fully automated, GitOps-driven infrastructure.
-          </div>
-          <div class="timeline-achievements">
-            <div class="achievement">Designed and scaled CI/CD pipelines with Jenkins and Concourse CI across multiple product teams</div>
-            <div class="achievement">Spearheaded application migration to Kubernetes, establishing Helm chart standards adopted org-wide</div>
-            <div class="achievement">Pioneered Terraform IaC adoption, authoring foundational modules that standardized all AWS provisioning</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-header">
-            <div class="timeline-role">Senior Application Support Engineer</div>
-            <div class="timeline-dates">APR 2018 — APR 2019</div>
-          </div>
-          <div class="timeline-company">SIGMA SYSTEMS · TORONTO (REMOTE)</div>
-          <div class="timeline-body">Primary technical escalation for enterprise clients. Automated deployment workflows and optimized production SQL diagnostics.</div>
-          <div class="timeline-achievements">
-            <div class="achievement">Reduced manual deployment effort by <strong>30%</strong> via Shell scripting automation</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-header">
-            <div class="timeline-role">DevOps / Automation Engineer</div>
-            <div class="timeline-dates">FEB 2013 — APR 2018</div>
-          </div>
-          <div class="timeline-company">TRACFONE WIRELESS · MEDLEY, FL</div>
-          <div class="timeline-body">Built CI/CD infrastructure for a high-volume consumer wireless platform. Mentored junior engineers and led DevOps practice adoption.</div>
-          <div class="timeline-achievements">
-            <div class="achievement">Reduced deployment error rate by <strong>40%</strong> through Python and Shell automation</div>
-            <div class="achievement">Designed Jenkins + AnthillPro pipelines across 10+ application teams</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="resume">
-      <div class="section-header">
-        <span class="section-num">05</span>
-        <h2 class="section-title">Resume</h2>
-        <div class="section-line"></div>
-      </div>
-
-      <div class="resume-viewer">
-        <div class="resume-toolbar">
-          <div class="resume-toolbar-left">Michael L. Lopez &nbsp;&middot;&nbsp; <span>Senior Platform Engineer</span></div>
-          <div class="resume-actions">
-            <a href="Michael-Lopez-Resume.pdf" target="_blank" rel="noopener" class="resume-btn" aria-label="Open resume in new tab">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-              Open in new tab
-            </a>
-
-            <a href="Michael-Lopez-Resume.pdf" download="Michael-Lopez-Resume.pdf" class="resume-btn primary" aria-label="Download resume PDF">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
-              Download PDF
-            </a>
-          </div>
-        </div>
-
-        <iframe
-          class="resume-embed"
-          id="resumeEmbed"
-          src="Michael-Lopez-Resume.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"
-          title="Michael Lopez Resume"
-        ></iframe>
-
-        <div class="resume-fallback" id="resumeFallback">
-          PDF preview not available in this browser.
-          <a href="Michael-Lopez-Resume.pdf" target="_blank" rel="noopener">Open it here</a>
-          or <a href="Michael-Lopez-Resume.pdf" download>download it</a>.
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="contact-inner">
-        <h2 class="contact-title">Let's work<br />together.</h2>
-        <p class="contact-sub">
-          Open to senior platform engineering roles, DevOps consulting engagements, and select opportunities. Remote preferred; open to commute for the right offer.
-        </p>
-
-        <div class="contact-links">
-          <button class="contact-link" id="emailCopyBtn" type="button" aria-label="Copy email address to clipboard">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-            <span id="emailBtnText">Copy email</span>
+  <section id="resume">
+    <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Resume</h2><div class="section-line"></div></div>
+    <div class="resume-viewer">
+      <div class="resume-toolbar">
+        <div class="resume-toolbar-left">Michael L. Lopez &nbsp;&middot;&nbsp; <span>Senior Platform Engineer</span></div>
+        <div class="resume-actions">
+          <button class="resume-btn" id="prevPage" title="Previous page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-
-          <!-- Added: Mailto link for people who just want to click and email -->
-          <a href="mailto:michael@flashlopez.dev" class="contact-link" aria-label="Email Michael">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-            Email
+          <span class="resume-pageinfo" id="pageInfo">1 / 2</span>
+          <button class="resume-btn" id="nextPage" title="Next page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <a href="Michael-Lopez-Resume.pdf" target="_blank" rel="noopener" class="resume-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open
           </a>
-
-          <a href="https://linkedin.com/in/michaellopez06" target="_blank" rel="noopener" class="contact-link" aria-label="Open LinkedIn profile">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-              <rect x="2" y="9" width="4" height="12"/>
-              <circle cx="4" cy="4" r="2"/>
-            </svg>
-            LinkedIn
-          </a>
-
-          <a href="Michael-Lopez-Resume.pdf" download="Michael-Lopez-Resume.pdf" class="contact-link" aria-label="Download resume PDF">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-            </svg>
-            Download resume
+          <a href="Michael-Lopez-Resume.pdf" download="Michael-Lopez-Resume.pdf" class="resume-btn primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download
           </a>
         </div>
       </div>
-    </section>
-  </main>
+      <div class="resume-canvas-wrap">
+        <canvas id="resumeCanvas"></canvas>
+        <div class="resume-loading" id="resumeLoading">
+          <div class="resume-loading-inner">Loading resume<span class="blink">_</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-inner">
+      <h2 class="contact-title">Let's work<br/>together.</h2>
+      <p class="contact-sub">Open to senior platform engineering roles, DevOps consulting engagements, and conversations about cloud-native infrastructure. Remote only.</p>
+      <div class="contact-links">
+        <button class="contact-link" id="emailCopyBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span id="emailBtnText">Copy email</span>
+        </button>
+        <a href="https://linkedin.com/in/michaellopez06" target="_blank" rel="noopener" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="Michael-Lopez-Resume.pdf" download="Michael-Lopez-Resume.pdf" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Download resume
+        </a>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <div class="footer-text">&#169; 2026 <span class="footer-accent">Michael L. Lopez</span></div>
@@ -757,126 +319,145 @@
   </footer>
 
   <script>
-    (function() {
-      'use strict';
+  (function() {
+    'use strict';
 
-      // ====== EMAIL (copy button) ======
-      // Keep the "copy email" behavior. Also: mailto link exists now.
-      var emailAddr = 'michael' + String.fromCharCode(64) + 'flashlopez.dev';
-      var btn = document.getElementById('emailCopyBtn');
-      var lbl = document.getElementById('emailBtnText');
-
-      if (btn && lbl) {
-        btn.addEventListener('click', function(ev) {
-          ev.preventDefault();
-          ev.stopPropagation();
-
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(emailAddr).then(function() {
-              lbl.textContent = 'Copied!';
-              setTimeout(function() { lbl.textContent = 'Copy email'; }, 2000);
-            }).catch(function() {
-              lbl.textContent = emailAddr;
-              setTimeout(function() { lbl.textContent = 'Copy email'; }, 3500);
-            });
-          } else {
+    // EMAIL — split into parts so Cloudflare cannot detect or mangle it
+    var e = ['michael', 'flashlopez', 'dev'].join('\x40').replace('\x40', '@').replace(/(\w+)$/, function(m){ return '.' + m; });
+    // Rebuild: michael + @ + flashlopez + . + dev
+    var emailAddr = 'michael' + String.fromCharCode(64) + 'flashlopez.dev';
+    var btn = document.getElementById('emailCopyBtn');
+    var lbl = document.getElementById('emailBtnText');
+    if (btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(emailAddr).then(function() {
+            lbl.textContent = 'Copied!';
+            setTimeout(function() { lbl.textContent = 'Copy email'; }, 2000);
+          }).catch(function() {
             lbl.textContent = emailAddr;
             setTimeout(function() { lbl.textContent = 'Copy email'; }, 3500);
-          }
-        });
-      }
-
-      // ====== MOBILE NAV ======
-      var navToggle = document.getElementById('navToggle');
-      var navDrawer = document.getElementById('navDrawer');
-      var drawerLinks = document.querySelectorAll('.drawer-link');
-
-      function setDrawer(open) {
-        if (!navDrawer || !navToggle) return;
-        navDrawer.classList.toggle('open', open);
-        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      }
-
-      if (navToggle && navDrawer) {
-        navToggle.addEventListener('click', function() {
-          var isOpen = navDrawer.classList.contains('open');
-          setDrawer(!isOpen);
-        });
-
-        drawerLinks.forEach(function(a) {
-          a.addEventListener('click', function() { setDrawer(false); });
-        });
-
-        // Close drawer on Escape
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') setDrawer(false);
-        });
-      }
-
-      // ====== CUSTOM CURSOR (non-Firefox, non-reduced-motion) ======
-      var prefersReduced = false;
-      try { prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
-
-      if (!prefersReduced && !/firefox/i.test(navigator.userAgent)) {
-        document.body.classList.add('has-custom-cursor');
-        var cur = document.getElementById('cursor');
-        var ring = document.getElementById('cursorRing');
-        var mx = 0, my = 0, rx = 0, ry = 0;
-
-        document.addEventListener('mousemove', function(ev) {
-          mx = ev.clientX; my = ev.clientY;
-          if (cur) { cur.style.left = mx + 'px'; cur.style.top = my + 'px'; }
-        });
-
-        (function tick() {
-          rx += (mx - rx) * 0.12;
-          ry += (my - ry) * 0.12;
-          if (ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
-          requestAnimationFrame(tick);
-        })();
-
-        document.querySelectorAll('a, button').forEach(function(el) {
-          el.addEventListener('mouseenter', function() {
-            if (!cur || !ring) return;
-            cur.style.width='16px';cur.style.height='16px';
-            ring.style.width='52px';ring.style.height='52px';
-            ring.style.opacity='.3';
           });
-          el.addEventListener('mouseleave', function() {
-            if (!cur || !ring) return;
-            cur.style.width='10px';cur.style.height='10px';
-            ring.style.width='36px';ring.style.height='36px';
-            ring.style.opacity='.5';
-          });
-        });
-      }
+        } else {
+          lbl.textContent = emailAddr;
+          setTimeout(function() { lbl.textContent = 'Copy email'; }, 3500);
+        }
+      });
+    }
 
-      // ====== NAV ACTIVE STATE ======
-      // Include the new #platform section in the active highlighting.
-      var secs = document.querySelectorAll('section[id]');
-      var navAs = document.querySelectorAll('.nav-links a');
+    // CUSTOM CURSOR — non-Firefox only
+    if (!/firefox/i.test(navigator.userAgent)) {
+      document.body.classList.add('has-custom-cursor');
+      var cur = document.getElementById('cursor');
+      var ring = document.getElementById('cursorRing');
+      var mx = 0, my = 0, rx = 0, ry = 0;
+      document.addEventListener('mousemove', function(ev) {
+        mx = ev.clientX; my = ev.clientY;
+        cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+      });
+      (function tick() {
+        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(tick);
+      })();
+      document.querySelectorAll('a, button').forEach(function(el) {
+        el.addEventListener('mouseenter', function() { cur.style.width='16px';cur.style.height='16px';ring.style.width='52px';ring.style.height='52px';ring.style.opacity='.3'; });
+        el.addEventListener('mouseleave', function() { cur.style.width='10px';cur.style.height='10px';ring.style.width='36px';ring.style.height='36px';ring.style.opacity='.5'; });
+      });
+    }
 
-      window.addEventListener('scroll', function() {
-        var y = window.scrollY, curId = '';
-        secs.forEach(function(s) {
-          if (y >= s.offsetTop - 130) curId = s.id;
-        });
-        navAs.forEach(function(a) {
-          a.classList.toggle('active', a.getAttribute('href') === '#' + curId);
-        });
-      }, { passive: true });
+    // NAV ACTIVE STATE
+    var secs = document.querySelectorAll('section[id]');
+    var navAs = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', function() {
+      var y = window.scrollY, cur = '';
+      secs.forEach(function(s) { if (y >= s.offsetTop - 130) cur = s.id; });
+      navAs.forEach(function(a) { a.classList.toggle('active', a.getAttribute('href') === '#' + cur); });
+    }, { passive: true });
 
-      // ====== RESUME IFRAME FALLBACK ======
-      var iframe = document.getElementById('resumeEmbed');
-      var fallback = document.getElementById('resumeFallback');
+    // MOBILE NAV
+    var navToggle = document.getElementById('navToggle');
+    var navDrawer = document.getElementById('navDrawer');
+    var navOverlay = document.getElementById('navOverlay');
+    function closeDrawer() {
+      navDrawer && navDrawer.classList.remove('open');
+      navOverlay && navOverlay.classList.remove('open');
+      navToggle && navToggle.setAttribute('aria-expanded','false');
+    }
+    if (navToggle) {
+      navToggle.addEventListener('click', function() {
+        var open = navDrawer.classList.contains('open');
+        if (open) { closeDrawer(); } else {
+          navDrawer.classList.add('open');
+          navOverlay.classList.add('open');
+          navToggle.setAttribute('aria-expanded','true');
+        }
+      });
+    }
+    if (navOverlay) navOverlay.addEventListener('click', closeDrawer);
+    document.querySelectorAll('.drawer-link').forEach(function(a) {
+      a.addEventListener('click', closeDrawer);
+    });
 
-      if (iframe && fallback) {
-        iframe.addEventListener('error', function() {
-          iframe.style.display = 'none';
-          fallback.style.display = 'block';
+  })();
+  </script>
+
+  <!-- PDF.js resume viewer — works identically in Chrome, Firefox, Safari -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+  (function() {
+    var PDFJS_WORKER = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    if (typeof pdfjsLib === 'undefined') return;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
+
+    var canvas = document.getElementById('resumeCanvas');
+    var loading = document.getElementById('resumeLoading');
+    var pageInfo = document.getElementById('pageInfo');
+    var prevBtn = document.getElementById('prevPage');
+    var nextBtn = document.getElementById('nextPage');
+    if (!canvas) return;
+
+    var ctx = canvas.getContext('2d');
+    var pdfDoc = null;
+    var currentPage = 1;
+    var rendering = false;
+
+    function renderPage(num) {
+      if (rendering) return;
+      rendering = true;
+      pdfDoc.getPage(num).then(function(page) {
+        var containerWidth = canvas.parentElement.clientWidth || 900;
+        var viewport = page.getViewport({ scale: 1 });
+        var scale = Math.min((containerWidth - 48) / viewport.width, 2);
+        var scaled = page.getViewport({ scale: scale });
+        canvas.width = scaled.width;
+        canvas.height = scaled.height;
+        page.render({ canvasContext: ctx, viewport: scaled }).promise.then(function() {
+          rendering = false;
+          if (loading) loading.style.display = 'none';
+          if (pageInfo) pageInfo.textContent = num + ' / ' + pdfDoc.numPages;
+          if (prevBtn) prevBtn.disabled = num <= 1;
+          if (nextBtn) nextBtn.disabled = num >= pdfDoc.numPages;
         });
-      }
-    })();
+      });
+    }
+
+    pdfjsLib.getDocument('Michael-Lopez-Resume.pdf').promise.then(function(pdf) {
+      pdfDoc = pdf;
+      renderPage(currentPage);
+    }).catch(function() {
+      if (loading) loading.innerHTML = '<div class="resume-loading-inner">Preview unavailable. <a href="Michael-Lopez-Resume.pdf" target="_blank" style="color:var(--accent)">Open PDF</a></div>';
+    });
+
+    if (prevBtn) prevBtn.addEventListener('click', function() {
+      if (currentPage > 1) { currentPage--; renderPage(currentPage); }
+    });
+    if (nextBtn) nextBtn.addEventListener('click', function() {
+      if (pdfDoc && currentPage < pdfDoc.numPages) { currentPage++; renderPage(currentPage); }
+    });
+  })();
   </script>
 </body>
 </html>
