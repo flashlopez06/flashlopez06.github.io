@@ -66,7 +66,7 @@
     .about-card:hover::before { transform:scaleY(1); }
     .about-card-title { font-family:var(--font-mono);font-size:.7rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem; }
     .about-card-text { font-size:.95rem;color:var(--text); }
-    .stack-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border); }
+    .stack-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border); }
     .stack-category { background:var(--card);padding:1.75rem 2rem;transition:background .2s; }
     .stack-category:hover { background:var(--bg3); }
     .stack-cat-label { font-family:var(--font-mono);font-size:.65rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem; }
@@ -100,7 +100,7 @@
     .resume-btn.primary:hover { background:#2dd48a;border-color:#2dd48a; }
     .resume-btn svg { width:12px;height:12px;flex-shrink:0; }
     button.resume-btn { cursor:pointer; }
-    .resume-canvas-wrap { position:relative;background:#f5f5f0;display:flex;justify-content:center;min-height:400px; }
+    .resume-canvas-wrap { position:relative;background:#2a2a3e;display:flex;justify-content:center;align-items:flex-start;min-height:420px;padding:24px; }
     #resumeCanvas { display:block;max-width:100%;height:auto;box-shadow:0 4px 32px rgba(0,0,0,.4); }
     .resume-loading { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--card); }
     .resume-loading-inner { font-family:var(--font-mono);font-size:.85rem;color:var(--muted);letter-spacing:.1em; }
@@ -404,15 +404,19 @@
   })();
   </script>
 
-  <!-- PDF.js resume viewer — works identically in Chrome, Firefox, Safari -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- PDF.js — renders PDF as canvas, works in Chrome, Firefox, Safari, Edge -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
   <script>
   (function() {
-    var PDFJS_WORKER = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    if (typeof pdfjsLib === 'undefined') return;
-    pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
+    if (typeof pdfjsLib === 'undefined') {
+      var fb = document.getElementById('resumeLoading');
+      if (fb) fb.innerHTML = '<div class="resume-loading-inner">Preview unavailable &mdash; <a href="Michael-Lopez-Resume.pdf" target="_blank" style="color:var(--accent)">open PDF</a> or <a href="Michael-Lopez-Resume.pdf" download style="color:var(--accent)">download</a></div>';
+      return;
+    }
 
-    var canvas = document.getElementById('resumeCanvas');
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    var canvas  = document.getElementById('resumeCanvas');
     var loading = document.getElementById('resumeLoading');
     var pageInfo = document.getElementById('pageInfo');
     var prevBtn = document.getElementById('prevPage');
@@ -421,41 +425,53 @@
 
     var ctx = canvas.getContext('2d');
     var pdfDoc = null;
-    var currentPage = 1;
+    var pageNum = 1;
     var rendering = false;
+    var pendingPage = null;
 
     function renderPage(num) {
-      if (rendering) return;
+      if (rendering) { pendingPage = num; return; }
       rendering = true;
       pdfDoc.getPage(num).then(function(page) {
-        var containerWidth = canvas.parentElement.clientWidth || 900;
-        var viewport = page.getViewport({ scale: 1 });
-        var scale = Math.min((containerWidth - 48) / viewport.width, 2);
-        var scaled = page.getViewport({ scale: scale });
-        canvas.width = scaled.width;
-        canvas.height = scaled.height;
-        page.render({ canvasContext: ctx, viewport: scaled }).promise.then(function() {
+        var wrap = canvas.parentElement;
+        var maxW = (wrap ? wrap.clientWidth : 900) - 48;
+        var vp0  = page.getViewport({ scale: 1 });
+        var scale = Math.min(maxW / vp0.width, 1.8);
+        var vp   = page.getViewport({ scale: scale });
+        canvas.width  = vp.width;
+        canvas.height = vp.height;
+        page.render({ canvasContext: ctx, viewport: vp }).promise.then(function() {
           rendering = false;
           if (loading) loading.style.display = 'none';
+          canvas.style.display = 'block';
           if (pageInfo) pageInfo.textContent = num + ' / ' + pdfDoc.numPages;
           if (prevBtn) prevBtn.disabled = num <= 1;
           if (nextBtn) nextBtn.disabled = num >= pdfDoc.numPages;
+          if (pendingPage !== null) { var p = pendingPage; pendingPage = null; renderPage(p); }
         });
+      }).catch(function(err) {
+        rendering = false;
+        console.error('PDF render error', err);
       });
     }
 
     pdfjsLib.getDocument('Michael-Lopez-Resume.pdf').promise.then(function(pdf) {
       pdfDoc = pdf;
-      renderPage(currentPage);
-    }).catch(function() {
-      if (loading) loading.innerHTML = '<div class="resume-loading-inner">Preview unavailable. <a href="Michael-Lopez-Resume.pdf" target="_blank" style="color:var(--accent)">Open PDF</a></div>';
+      renderPage(pageNum);
+    }).catch(function(err) {
+      console.error('PDF load error', err);
+      if (loading) loading.innerHTML = '<div class="resume-loading-inner">Preview unavailable &mdash; <a href="Michael-Lopez-Resume.pdf" target="_blank" style="color:var(--accent)">open PDF</a> or <a href="Michael-Lopez-Resume.pdf" download style="color:var(--accent)">download</a></div>';
     });
 
     if (prevBtn) prevBtn.addEventListener('click', function() {
-      if (currentPage > 1) { currentPage--; renderPage(currentPage); }
+      if (pageNum > 1) { pageNum--; renderPage(pageNum); }
     });
     if (nextBtn) nextBtn.addEventListener('click', function() {
-      if (pdfDoc && currentPage < pdfDoc.numPages) { currentPage++; renderPage(currentPage); }
+      if (pdfDoc && pageNum < pdfDoc.numPages) { pageNum++; renderPage(pageNum); }
+    });
+
+    window.addEventListener('resize', function() {
+      if (pdfDoc) renderPage(pageNum);
     });
   })();
   </script>
