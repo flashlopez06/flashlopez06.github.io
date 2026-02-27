@@ -34,6 +34,11 @@
       font-size: 16px;
       line-height: 1.6;
       overflow-x: hidden;
+    }
+    body.custom-cursor {
+      cursor: none;
+    }
+    body.custom-cursor a, body.custom-cursor button {
       cursor: none;
     }
 
@@ -897,10 +902,18 @@
   </footer>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Custom cursor
+    // Custom cursor — disabled on Firefox since it doesn't support it well
+    const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursorRing');
     let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    if (!isFirefox) {
+      document.body.classList.add('custom-cursor');
+    } else {
+      cursor.style.display = 'none';
+      ring.style.display = 'none';
+    }
 
     document.addEventListener('mousemove', e => {
       mouseX = e.clientX; mouseY = e.clientY;
