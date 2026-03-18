@@ -3,131 +3,186 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Michael L. Lopez — Senior Platform Engineer</title>
+  <title>Michael L. Lopez — Senior DevOps Engineer | Platform Engineering</title>
+  <meta name="description" content="Senior DevOps Engineer specializing in platform engineering — Kubernetes, Terraform, AWS, ArgoCD, GitOps. 14 years of experience building internal developer platforms. Based in Florida, working remotely." />
+  <meta name="keywords" content="DevOps Engineer, Platform Engineer, Kubernetes, Terraform, AWS, EKS, ArgoCD, GitOps, CI/CD, Cloud Infrastructure, Remote" />
+  <meta name="author" content="Michael L. Lopez" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Michael L. Lopez — Senior DevOps Engineer | Platform Engineering" />
+  <meta property="og:description" content="Senior DevOps Engineer specializing in platform engineering — building internal developer platforms with Kubernetes, Terraform, AWS, and GitOps at scale." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://flashlopez.dev" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Michael L. Lopez — Senior DevOps Engineer" />
+  <meta name="twitter:description" content="Platform Engineering · Kubernetes · Terraform · AWS · GitOps" />
+  <link rel="canonical" href="https://flashlopez.dev" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0a0a0f; --bg2: #0e0e16; --bg3: #16161f; --border: #1e1e2e;
-      --accent: #4af0a8; --accent2: #3b8fff;
-      --text: #e8e8f0; --muted: #9090b0; --card: #13131c;
-      --font-display: 'Syne', sans-serif;
-      --font-mono: 'Space Mono', monospace;
+      --bg: #08080d; --bg2: #0c0c14; --bg3: #12121c; --border: #1a1a2a;
+      --accent: #4af0a8; --accent-dim: rgba(74,240,168,.08); --accent2: #5b9fff;
+      --text: #eaeaf2; --muted: #8888a8; --card: #111119;
+      --font-display: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
       --font-body: 'DM Sans', sans-serif;
+      --glow: 0 0 60px rgba(74,240,168,.06);
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
-    .cursor { width:10px;height:10px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;display:none; }
-    .cursor-ring { width:36px;height:36px;border:1.5px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;transition:width .2s,height .2s,opacity .2s;display:none; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.65; overflow-x: hidden; }
+
+    /* ── CURSOR ── */
+    .cursor { width:8px;height:8px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .12s,height .12s;display:none; }
+    .cursor-ring { width:34px;height:34px;border:1.5px solid rgba(74,240,168,.5);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4;transition:width .18s,height .18s,opacity .18s;display:none; }
     body.has-custom-cursor { cursor: none; }
     body.has-custom-cursor a, body.has-custom-cursor button { cursor: none; }
     body.has-custom-cursor .cursor, body.has-custom-cursor .cursor-ring { display: block; }
-    nav { position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 4rem;border-bottom:1px solid var(--border);background:rgba(10,10,15,.88);backdrop-filter:blur(16px); }
-    .nav-logo { font-family:var(--font-mono);font-size:.85rem;color:var(--accent);letter-spacing:.08em;text-decoration:none; }
+
+    /* ── NAV ── */
+    nav { position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 4rem;border-bottom:1px solid rgba(26,26,42,.6);background:rgba(8,8,13,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px); }
+    .nav-logo { font-family:var(--font-mono);font-size:.82rem;color:var(--accent);letter-spacing:.08em;text-decoration:none;font-weight:700; }
     .blink { animation:pulse 1.8s ease-in-out infinite; }
     .nav-links { display:flex;gap:2.5rem;list-style:none; }
-    .nav-links a { font-family:var(--font-mono);font-size:.75rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s; }
+    .nav-links a { font-family:var(--font-mono);font-size:.7rem;color:var(--muted);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;font-weight:500; }
     .nav-links a:hover, .nav-links a.active { color:var(--accent); }
+
+    /* ── HERO ── */
     .hero { min-height:100vh;display:flex;align-items:center;padding:8rem 4rem 4rem;position:relative;overflow:hidden; }
-    .hero-grid { position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.35;mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black 20%,transparent 100%); }
-    .hero-glow { position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(74,240,168,.07) 0%,transparent 70%);top:50%;left:55%;transform:translate(-50%,-50%);pointer-events:none; }
-    .hero-content { position:relative;max-width:900px; }
-    .hero-tag { font-family:var(--font-mono);font-size:.75rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;opacity:0;animation:fadeUp .6s ease .2s forwards; }
-    .hero-tag::before { content:'';display:block;width:32px;height:1px;background:var(--accent); }
-    .hero-name { font-family:var(--font-display);font-size:clamp(3.5rem,8vw,7rem);font-weight:800;line-height:.95;letter-spacing:-.03em;margin-bottom:1.5rem;opacity:0;animation:fadeUp .7s ease .35s forwards; }
-    .hero-name span { display:block;color:transparent;-webkit-text-stroke:1px rgba(74,240,168,.4); }
-    .hero-title { font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:500;color:var(--muted);margin-bottom:2rem;opacity:0;animation:fadeUp .7s ease .5s forwards; }
+    .hero-grid { position:absolute;inset:0;background-image:linear-gradient(rgba(26,26,42,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(26,26,42,.4) 1px,transparent 1px);background-size:64px 64px;opacity:.3;mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,black 20%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,black 20%,transparent 100%); }
+    .hero-glow { position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(74,240,168,.05) 0%,rgba(91,159,255,.02) 40%,transparent 70%);top:40%;left:55%;transform:translate(-50%,-50%);pointer-events:none; }
+    .hero-glow-2 { position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(91,159,255,.04) 0%,transparent 70%);top:30%;left:20%;pointer-events:none; }
+    .hero-content { position:relative;max-width:860px; }
+    .hero-tag { font-family:var(--font-mono);font-size:.7rem;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.75rem;display:flex;align-items:center;gap:.75rem;opacity:0;animation:fadeUp .6s ease .2s forwards;font-weight:500; }
+    .hero-tag::before { content:'';display:block;width:28px;height:1px;background:var(--accent); }
+    .hero-name { font-family:var(--font-display);font-size:clamp(3.2rem,7.5vw,6.5rem);font-weight:900;line-height:.92;letter-spacing:-.04em;margin-bottom:1.5rem;opacity:0;animation:fadeUp .7s ease .35s forwards; }
+    .hero-name .outline { display:block;color:transparent;-webkit-text-stroke:1.5px rgba(74,240,168,.35); }
+    .hero-title { font-family:var(--font-display);font-size:clamp(1rem,2.2vw,1.35rem);font-weight:500;color:var(--muted);margin-bottom:2rem;opacity:0;animation:fadeUp .7s ease .5s forwards;letter-spacing:-.01em; }
     .hero-title strong { color:var(--accent2);font-weight:600; }
-    .hero-desc { max-width:560px;font-size:1rem;color:var(--muted);line-height:1.75;margin-bottom:3rem;font-weight:300;opacity:0;animation:fadeUp .7s ease .65s forwards; }
+    .hero-desc { max-width:540px;font-size:.98rem;color:var(--muted);line-height:1.8;margin-bottom:3rem;font-weight:300;opacity:0;animation:fadeUp .7s ease .65s forwards; }
     .hero-ctas { display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .7s ease .8s forwards; }
-    .btn-primary { display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.75rem;background:var(--accent);color:#0a0a0f;font-family:var(--font-mono);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:none;transition:transform .2s,box-shadow .2s; }
-    .btn-primary:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(74,240,168,.25); }
-    .btn-secondary { display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.75rem;background:transparent;color:var(--text);font-family:var(--font-mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border);transition:border-color .2s,color .2s; }
+    .btn-primary { display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.65rem;background:var(--accent);color:#080810;font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:none;transition:transform .2s,box-shadow .2s;border-radius:2px; }
+    .btn-primary:hover { transform:translateY(-2px);box-shadow:0 8px 30px rgba(74,240,168,.2); }
+    .btn-secondary { display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.65rem;background:transparent;color:var(--text);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border);transition:border-color .2s,color .2s;border-radius:2px; }
     .btn-secondary:hover { border-color:var(--accent2);color:var(--accent2); }
-    .hero-stats { position:absolute;right:4rem;bottom:6rem;display:flex;flex-direction:column;gap:1.5rem;opacity:0;animation:fadeLeft .8s ease 1s forwards; }
+    .hero-stats { position:absolute;right:4rem;bottom:6rem;display:flex;flex-direction:column;gap:2rem;opacity:0;animation:fadeLeft .8s ease 1s forwards; }
     .stat { text-align:right; }
-    .stat-num { font-family:var(--font-display);font-size:2.5rem;font-weight:800;line-height:1; }
+    .stat-num { font-family:var(--font-display);font-size:2.75rem;font-weight:900;line-height:1;letter-spacing:-.03em; }
     .stat-num span { color:var(--accent); }
-    .stat-label { font-family:var(--font-mono);font-size:.65rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:.2rem; }
-    section { padding:6rem 4rem;border-top:1px solid var(--border); }
+    .stat-label { font-family:var(--font-mono);font-size:.6rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:.25rem;font-weight:500; }
+
+    /* ── SECTIONS ── */
+    section { padding:7rem 4rem;border-top:1px solid var(--border); }
     .section-header { display:flex;align-items:center;gap:1rem;margin-bottom:3.5rem; }
-    .section-num { font-family:var(--font-mono);font-size:.7rem;color:var(--accent);letter-spacing:.15em; }
-    .section-title { font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;letter-spacing:-.02em; }
-    .section-line { flex:1;height:1px;background:var(--border);margin-left:1rem; }
+    .section-num { font-family:var(--font-mono);font-size:.65rem;color:var(--accent);letter-spacing:.18em;font-weight:700; }
+    .section-title { font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;letter-spacing:-.03em; }
+    .section-line { flex:1;height:1px;background:linear-gradient(to right,var(--border),transparent);margin-left:1rem; }
+
+    /* ── ABOUT ── */
     .about-grid { display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start; }
-    .about-text p { color:var(--muted);font-size:1.05rem;line-height:1.8;margin-bottom:1.25rem;font-weight:300; }
+    .about-text p { color:var(--muted);font-size:1.02rem;line-height:1.85;margin-bottom:1.25rem;font-weight:300; }
     .about-text p strong { color:var(--text);font-weight:500; }
-    .about-cards { display:flex;flex-direction:column;gap:1rem; }
-    .about-card { background:var(--card);border:1px solid var(--border);padding:1.25rem 1.5rem;position:relative;overflow:hidden;transition:border-color .2s; }
-    .about-card::before { content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent);transform:scaleY(0);transition:transform .2s; }
-    .about-card:hover { border-color:rgba(74,240,168,.3); }
+    .about-cards { display:flex;flex-direction:column;gap:.75rem; }
+    .about-card { background:var(--card);border:1px solid var(--border);padding:1.2rem 1.5rem;position:relative;overflow:hidden;transition:border-color .25s,box-shadow .25s;border-radius:3px; }
+    .about-card::before { content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent);transform:scaleY(0);transition:transform .25s;transform-origin:top; }
+    .about-card:hover { border-color:rgba(74,240,168,.2);box-shadow:var(--glow); }
     .about-card:hover::before { transform:scaleY(1); }
-    .about-card-title { font-family:var(--font-mono);font-size:.7rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem; }
-    .about-card-text { font-size:.95rem;color:var(--text); }
-    .stack-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border); }
-    .stack-category { background:var(--card);padding:1.75rem 2rem;transition:background .2s; }
+    .about-card-title { font-family:var(--font-mono);font-size:.65rem;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem;font-weight:700; }
+    .about-card-text { font-size:.92rem;color:var(--text);line-height:1.5; }
+
+    /* ── STACK ── */
+    .stack-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:3px;overflow:hidden; }
+    .stack-category { background:var(--card);padding:1.75rem 2rem;transition:background .25s; }
     .stack-category:hover { background:var(--bg3); }
-    .stack-cat-label { font-family:var(--font-mono);font-size:.65rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem; }
-    .stack-tags { display:flex;flex-wrap:wrap;gap:.5rem; }
-    .stack-tag { font-family:var(--font-mono);font-size:.72rem;color:var(--text);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:.3rem .65rem;letter-spacing:.05em;transition:background .15s,border-color .15s,color .15s; }
-    .stack-tag:hover { background:rgba(74,240,168,.08);border-color:rgba(74,240,168,.35);color:var(--accent); }
-    .stack-tag.hot { border-color:rgba(59,143,255,.4);color:var(--accent2);background:rgba(59,143,255,.06); }
+    .stack-cat-label { font-family:var(--font-mono);font-size:.6rem;color:var(--accent);letter-spacing:.16em;text-transform:uppercase;margin-bottom:1rem;font-weight:700; }
+    .stack-tags { display:flex;flex-wrap:wrap;gap:.45rem; }
+    .stack-tag { font-family:var(--font-mono);font-size:.68rem;color:var(--text);background:rgba(255,255,255,.03);border:1px solid var(--border);padding:.28rem .6rem;letter-spacing:.04em;transition:all .15s;border-radius:2px;font-weight:500; }
+    .stack-tag:hover { background:var(--accent-dim);border-color:rgba(74,240,168,.3);color:var(--accent); }
+    .stack-tag.hot { border-color:rgba(91,159,255,.35);color:var(--accent2);background:rgba(91,159,255,.05); }
+    .stack-tag.ai { border-color:rgba(255,180,50,.35);color:#ffb432;background:rgba(255,180,50,.05); }
+
+    /* ── TIMELINE ── */
     .timeline { position:relative;padding-left:2rem; }
-    .timeline::before { content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--accent),var(--border),transparent); }
+    .timeline::before { content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--accent),var(--border) 60%,transparent); }
     .timeline-item { position:relative;padding:0 0 3.5rem 2.5rem; }
     .timeline-dot { position:absolute;left:-2.1rem;top:6px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--accent); }
-    .timeline-current .timeline-dot { background:var(--accent);box-shadow:0 0 12px var(--accent); }
-    .timeline-header { display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:.4rem;flex-wrap:wrap; }
-    .timeline-role { font-family:var(--font-display);font-size:1.15rem;font-weight:700; }
-    .timeline-dates { font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:.08em;white-space:nowrap;padding-top:.2rem; }
-    .timeline-company { font-family:var(--font-mono);font-size:.75rem;color:var(--accent2);letter-spacing:.08em;margin-bottom:.85rem; }
-    .timeline-body { font-size:.95rem;color:var(--muted);line-height:1.75;font-weight:300; }
+    .timeline-current .timeline-dot { background:var(--accent);box-shadow:0 0 16px rgba(74,240,168,.4); }
+    .timeline-header { display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:.35rem;flex-wrap:wrap; }
+    .timeline-role { font-family:var(--font-display);font-size:1.12rem;font-weight:700;letter-spacing:-.01em; }
+    .timeline-dates { font-family:var(--font-mono);font-size:.65rem;color:var(--muted);letter-spacing:.1em;white-space:nowrap;padding-top:.25rem;font-weight:500; }
+    .timeline-company { font-family:var(--font-mono);font-size:.7rem;color:var(--accent2);letter-spacing:.1em;margin-bottom:.85rem;font-weight:500; }
+    .timeline-body { font-size:.92rem;color:var(--muted);line-height:1.8;font-weight:300; }
     .timeline-achievements { margin-top:1rem;display:flex;flex-direction:column;gap:.5rem; }
-    .achievement { display:flex;gap:.75rem;align-items:flex-start;font-size:.9rem;color:var(--muted); }
-    .achievement::before { content:'▸';color:var(--accent);font-size:.75rem;margin-top:.15rem;flex-shrink:0; }
+    .achievement { display:flex;gap:.75rem;align-items:flex-start;font-size:.88rem;color:var(--muted);line-height:1.65; }
+    .achievement::before { content:'▸';color:var(--accent);font-size:.7rem;margin-top:.2rem;flex-shrink:0; }
     .achievement strong { color:var(--text);font-weight:500; }
-    .resume-viewer { background:var(--card);border:1px solid var(--border);overflow:hidden; }
+
+    /* ── RESUME VIEWER ── */
+    .resume-viewer { background:var(--card);border:1px solid var(--border);overflow:hidden;border-radius:3px; }
     .resume-toolbar { display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding:1rem 1.5rem;border-bottom:1px solid var(--border);background:var(--bg2); }
-    .resume-toolbar-left { font-family:var(--font-mono);font-size:.72rem;color:var(--muted);letter-spacing:.08em; }
+    .resume-toolbar-left { font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:.08em;font-weight:500; }
     .resume-toolbar-left span { color:var(--accent); }
     .resume-actions { display:flex;align-items:center;gap:.75rem; }
-    .resume-pageinfo { font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:.06em;white-space:nowrap; }
-    .resume-btn { display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border);color:var(--muted);background:transparent;transition:border-color .2s,color .2s,background .2s; }
-    .resume-btn:hover { border-color:var(--accent);color:var(--accent);background:rgba(74,240,168,.05); }
-    .resume-btn.primary { background:var(--accent);color:#0a0a0f;border-color:var(--accent);font-weight:700; }
+    .resume-pageinfo { font-family:var(--font-mono);font-size:.65rem;color:var(--muted);letter-spacing:.06em;white-space:nowrap;font-weight:500; }
+    .resume-btn { display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border);color:var(--muted);background:transparent;transition:all .2s;border-radius:2px;font-weight:500; }
+    .resume-btn:hover { border-color:var(--accent);color:var(--accent);background:var(--accent-dim); }
+    .resume-btn.primary { background:var(--accent);color:#080810;border-color:var(--accent);font-weight:700; }
     .resume-btn.primary:hover { background:#2dd48a;border-color:#2dd48a; }
     .resume-btn svg { width:12px;height:12px;flex-shrink:0; }
     button.resume-btn { cursor:pointer; }
-    .resume-canvas-wrap { position:relative;background:#2a2a3e;display:flex;justify-content:center;align-items:flex-start;min-height:420px;padding:24px; }
-    #resumeCanvas { display:block;max-width:100%;height:auto;box-shadow:0 4px 32px rgba(0,0,0,.4); }
+    .resume-canvas-wrap { position:relative;background:#1e1e30;display:flex;justify-content:center;align-items:flex-start;min-height:420px;padding:24px; }
+    #resumeCanvas { display:block;max-width:100%;height:auto;box-shadow:0 4px 40px rgba(0,0,0,.5); }
     .resume-loading { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--card); }
-    .resume-loading-inner { font-family:var(--font-mono);font-size:.85rem;color:var(--muted);letter-spacing:.1em; }
+    .resume-loading-inner { font-family:var(--font-mono);font-size:.8rem;color:var(--muted);letter-spacing:.1em; }
+
+    /* ── CONTACT ── */
     .contact-inner { max-width:640px;margin:0 auto;text-align:center; }
-    .contact-title { font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem;letter-spacing:-.02em; }
-    .contact-sub { color:var(--muted);font-size:1rem;font-weight:300;margin-bottom:2.5rem;line-height:1.7; }
-    .contact-links { display:flex;justify-content:center;gap:1rem;flex-wrap:wrap; }
-    .contact-link { display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;background:var(--card);border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-decoration:none;text-transform:uppercase;transition:border-color .2s,color .2s,background .2s; }
-    .contact-link:hover { border-color:var(--accent);color:var(--accent);background:rgba(74,240,168,.04); }
+    .contact-title { font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:900;line-height:1.05;margin-bottom:1rem;letter-spacing:-.03em; }
+    .contact-sub { color:var(--muted);font-size:.98rem;font-weight:300;margin-bottom:2.5rem;line-height:1.75; }
+    .contact-links { display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap; }
+    .contact-link { display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.35rem;background:var(--card);border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-decoration:none;text-transform:uppercase;transition:all .2s;border-radius:2px;font-weight:500; }
+    .contact-link:hover { border-color:var(--accent);color:var(--accent);background:var(--accent-dim); }
     .contact-link svg { width:14px;height:14px;flex-shrink:0; }
-    button.contact-link { font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card); }
+    button.contact-link { font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;background:var(--card);cursor:pointer; }
+
+    /* ── FOOTER ── */
     footer { padding:2rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between; }
-    .footer-text { font-family:var(--font-mono);font-size:.65rem;color:var(--muted);letter-spacing:.1em; }
+    .footer-text { font-family:var(--font-mono);font-size:.6rem;color:var(--muted);letter-spacing:.12em;font-weight:500; }
     .footer-accent { color:var(--accent); }
-    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes fadeLeft { from{opacity:0;transform:translateX(24px)} to{opacity:1;transform:translateX(0)} }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeLeft { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+
     /* ── MOBILE NAV ── */
-    .nav-toggle { display:none;background:none;border:1px solid var(--border);color:var(--text);padding:.4rem .6rem;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.05em; }
+    .nav-toggle { display:none;background:none;border:1px solid var(--border);color:var(--text);padding:.35rem .6rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.06em;border-radius:2px;font-weight:500; }
     .nav-drawer { display:none;position:fixed;top:0;right:0;bottom:0;width:260px;background:var(--bg2);border-left:1px solid var(--border);z-index:300;padding:5rem 2rem 2rem;flex-direction:column;gap:1.5rem; }
     .nav-drawer.open { display:flex; }
-    .drawer-link { font-family:var(--font-mono);font-size:.85rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s; }
+    .drawer-link { font-family:var(--font-mono);font-size:.8rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;font-weight:500; }
     .drawer-link:hover { color:var(--accent); }
-    .nav-overlay { display:none;position:fixed;inset:0;z-index:299;background:rgba(0,0,0,.5); }
+    .nav-overlay { display:none;position:fixed;inset:0;z-index:299;background:rgba(0,0,0,.6); }
     .nav-overlay.open { display:block; }
-        @media(max-width:900px){nav{padding:1.25rem 2rem}.nav-links{gap:1.5rem}.hero{padding:7rem 2rem 12rem}.hero-stats{right:2rem;bottom:3rem;flex-direction:row;gap:2rem}section{padding:4rem 2rem}.about-grid{grid-template-columns:1fr;gap:2.5rem}footer{padding:1.5rem 2rem;flex-direction:column;gap:.5rem;text-align:center}.resume-embed{height:500px}}
-    @media(max-width:600px){.nav-links{display:none}.nav-toggle{display:inline-flex}.hero-stats{display:none}}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      nav{padding:1.1rem 2rem}
+      .nav-links{gap:1.5rem}
+      .hero{padding:7rem 2rem 12rem}
+      .hero-stats{right:2rem;bottom:3rem;flex-direction:row;gap:2rem}
+      section{padding:5rem 2rem}
+      .about-grid{grid-template-columns:1fr;gap:2.5rem}
+      .stack-grid{grid-template-columns:1fr 1fr}
+      footer{padding:1.5rem 2rem;flex-direction:column;gap:.5rem;text-align:center}
+    }
+    @media(max-width:600px){
+      .nav-links{display:none}
+      .nav-toggle{display:inline-flex}
+      .hero-stats{display:none}
+      .stack-grid{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
@@ -135,7 +190,7 @@
   <div class="cursor-ring" id="cursorRing"></div>
 
   <nav>
-    <a href="#home" class="nav-logo">ML.<span class="blink">_</span></a>
+    <a href="#home" class="nav-logo">ML<span class="blink">_</span></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#stack">Stack</a></li>
@@ -154,14 +209,16 @@
     <a href="#contact" class="drawer-link">Contact</a>
   </nav>
 
+  <!-- ═══════════ HERO ═══════════ -->
   <section class="hero" id="home">
     <div class="hero-grid"></div>
     <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
     <div class="hero-content">
-      <div class="hero-tag">Available for consulting &amp; select opportunities</div>
-      <h1 class="hero-name">Michael<br/><span>Lopez</span></h1>
-      <p class="hero-title">Senior Platform Engineer &nbsp;/&nbsp; <strong>Cloud Infrastructure &amp; DevOps</strong></p>
-      <p class="hero-desc">I build internal developer platforms that let engineering teams ship faster. 14 years of experience turning complex cloud infrastructure into clean, automated systems — from EKS and ArgoCD to Terraform-driven provisioning at scale.</p>
+      <div class="hero-tag">Open to platform engineering &amp; DevOps opportunities</div>
+      <h1 class="hero-name">Michael<br/><span class="outline">Lopez</span></h1>
+      <p class="hero-title">Senior DevOps Engineer &nbsp;/&nbsp; <strong>Platform Engineering &amp; Cloud Infrastructure</strong></p>
+      <p class="hero-desc">I build internal developer platforms that let engineering teams ship faster. 14 years turning complex cloud infrastructure into clean, automated systems — from EKS and ArgoCD to Terraform-driven provisioning at scale.</p>
       <div class="hero-ctas">
         <a href="#contact" class="btn-primary">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -176,56 +233,62 @@
     <div class="hero-stats">
       <div class="stat"><div class="stat-num">14<span>+</span></div><div class="stat-label">Years Experience</div></div>
       <div class="stat"><div class="stat-num">6<span>+</span></div><div class="stat-label">Years DevOps</div></div>
-      <div class="stat"><div class="stat-num">&#8734;</div><div class="stat-label">Coffee Consumed</div></div>
+      <div class="stat"><div class="stat-num">20<span>+</span></div><div class="stat-label">Services Managed</div></div>
     </div>
   </section>
 
+  <!-- ═══════════ ABOUT ═══════════ -->
   <section id="about">
     <div class="section-header"><span class="section-num">01</span><h2 class="section-title">About</h2><div class="section-line"></div></div>
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm a Senior Platform Engineer based in <strong>Florida</strong>, working fully remote, specializing in <strong>internal developer platforms, cloud-native infrastructure, and GitOps automation</strong>. My work sits at the intersection of what developers need to ship confidently and what operations teams need to sleep at night.</p>
+        <p>I'm a Senior DevOps Engineer based in <strong>Florida</strong>, working fully remote, specializing in <strong>platform engineering, cloud-native infrastructure, and GitOps automation</strong>. My work sits at the intersection of what developers need to ship confidently and what operations teams need to sleep at night.</p>
         <p>Before moving into DevOps, I spent 8 years in application support and operations — which means I understand production systems from the inside out. I don't just build pipelines; I build systems that are operable, documented, and designed to be handed off cleanly.</p>
-        <p>Currently at <strong>Trimble</strong>, where I own the full platform stack: Kubernetes (EKS), ArgoCD, Concourse CI, and Confluent. I'm actively deepening my work in <strong>AI-augmented platform tooling</strong> — building smarter internal workflows with the latest generation of LLMs and automation tools.</p>
-        <p>I hold a <strong>BS in Computer Engineering from the University of Miami</strong> and am currently pursuing AWS Solutions Architect and CKA certifications.</p>
+        <p>Currently I own the full platform stack: <strong>Kubernetes (EKS), ArgoCD, Concourse CI, Confluent/Kafka,</strong> and <strong>Terraform-based infrastructure provisioning</strong> across multiple AWS accounts and environments. I'm also actively integrating <strong>AI-augmented tooling</strong> into platform workflows — using AI-assisted IaC development, agentic code review, and MCP integrations to accelerate infrastructure delivery.</p>
+        <p>I hold a <strong>BS in Computer Engineering from the University of Miami</strong> and am pursuing AWS Solutions Architect and CKA certifications.</p>
       </div>
       <div class="about-cards">
         <div class="about-card"><div class="about-card-title">Specialty</div><div class="about-card-text">Internal Developer Platforms (IDP) · GitOps · Cloud-Native Infrastructure</div></div>
-        <div class="about-card"><div class="about-card-title">Cloud</div><div class="about-card-text">AWS</div></div>
+        <div class="about-card"><div class="about-card-title">Cloud</div><div class="about-card-text">AWS (EKS, IAM, Secrets Manager, S3, RDS, CloudWatch)</div></div>
         <div class="about-card"><div class="about-card-title">Background</div><div class="about-card-text">6 yrs DevOps · 8 yrs App Support &amp; Ops · BS Computer Engineering, U of Miami</div></div>
-        <div class="about-card"><div class="about-card-title">Currently Learning</div><div class="about-card-text">AI-powered infrastructure tooling · AWS SAA · CKA</div></div>
-        <div class="about-card"><div class="about-card-title">Location</div><div class="about-card-text">Florida · Fully Remote</div></div>
+        <div class="about-card"><div class="about-card-title">AI &amp; Automation</div><div class="about-card-text">Cursor AI · MCP Integrations · AI-Assisted IaC · Agentic Code Review</div></div>
+        <div class="about-card"><div class="about-card-title">Pursuing</div><div class="about-card-text">AWS Solutions Architect – Associate · CKA</div></div>
+        <div class="about-card"><div class="about-card-title">Location</div><div class="about-card-text">Florida · Fully Remote · US Only</div></div>
       </div>
     </div>
   </section>
 
+  <!-- ═══════════ STACK ═══════════ -->
   <section id="stack">
     <div class="section-header"><span class="section-num">02</span><h2 class="section-title">Tech Stack</h2><div class="section-line"></div></div>
     <div class="stack-grid">
-      <div class="stack-category"><div class="stack-cat-label">Cloud &amp; Infrastructure</div><div class="stack-tags"><span class="stack-tag hot">AWS</span><span class="stack-tag hot">Kubernetes</span><span class="stack-tag">Docker</span><span class="stack-tag">Linux (RHEL/Ubuntu)</span></div></div>
+      <div class="stack-category"><div class="stack-cat-label">Cloud &amp; Infrastructure</div><div class="stack-tags"><span class="stack-tag hot">AWS</span><span class="stack-tag hot">Kubernetes (EKS)</span><span class="stack-tag">Docker</span><span class="stack-tag">Linux</span></div></div>
       <div class="stack-category"><div class="stack-cat-label">IaC &amp; Automation</div><div class="stack-tags"><span class="stack-tag hot">Terraform</span><span class="stack-tag">Helm</span><span class="stack-tag">Shell/Bash</span><span class="stack-tag">Python</span></div></div>
       <div class="stack-category"><div class="stack-cat-label">CI/CD &amp; GitOps</div><div class="stack-tags"><span class="stack-tag hot">ArgoCD</span><span class="stack-tag">Concourse CI</span><span class="stack-tag">Jenkins</span><span class="stack-tag">Helm Charts</span></div></div>
-      <div class="stack-category"><div class="stack-cat-label">Observability</div><div class="stack-tags"><span class="stack-tag">Sumo Logic</span><span class="stack-tag">New Relic</span><span class="stack-tag">Grafana</span><span class="stack-tag">PagerDuty</span><span class="stack-tag">CloudWatch</span></div></div>
+      <div class="stack-category"><div class="stack-cat-label">Observability</div><div class="stack-tags"><span class="stack-tag">Sumo Logic</span><span class="stack-tag">New Relic</span><span class="stack-tag">Grafana</span><span class="stack-tag">Prometheus</span><span class="stack-tag">PagerDuty</span><span class="stack-tag">CloudWatch</span></div></div>
       <div class="stack-category"><div class="stack-cat-label">Event Streaming</div><div class="stack-tags"><span class="stack-tag hot">Confluent Cloud</span><span class="stack-tag">Confluent for K8s</span><span class="stack-tag">Apache Kafka</span></div></div>
-      <div class="stack-category"><div class="stack-cat-label">Languages</div><div class="stack-tags"><span class="stack-tag">Python</span><span class="stack-tag">Shell/Bash</span><span class="stack-tag">SQL</span><span class="stack-tag">YAML</span><span class="stack-tag">Java</span></div></div>
+      <div class="stack-category"><div class="stack-cat-label">Security &amp; Identity</div><div class="stack-tags"><span class="stack-tag">CrowdStrike</span><span class="stack-tag">Snyk</span><span class="stack-tag">Okta SSO</span><span class="stack-tag">FIPS 140-2</span><span class="stack-tag">ESO</span></div></div>
+      <div class="stack-category" style="grid-column:span 3"><div class="stack-cat-label">AI &amp; Augmented Development</div><div class="stack-tags"><span class="stack-tag ai">Cursor AI</span><span class="stack-tag ai">MCP Integrations</span><span class="stack-tag ai">AI-Assisted IaC</span><span class="stack-tag ai">Agentic Code Review</span></div></div>
     </div>
   </section>
 
+  <!-- ═══════════ EXPERIENCE ═══════════ -->
   <section id="experience">
     <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Experience</h2><div class="section-line"></div></div>
     <div class="timeline">
       <div class="timeline-item timeline-current">
         <div class="timeline-dot"></div>
-        <div class="timeline-header"><div class="timeline-role">Senior Platform Engineer</div><div class="timeline-dates">SEP 2024 — PRESENT</div></div>
+        <div class="timeline-header"><div class="timeline-role">Senior DevOps Engineer</div><div class="timeline-dates">SEP 2024 — PRESENT</div></div>
         <div class="timeline-company">TRIMBLE · REMOTE</div>
         <div class="timeline-body">Lead platform engineering for a cloud-native, multi-team environment. Own the full lifecycle of developer tooling and infrastructure services from provisioning through operational handoff.</div>
         <div class="timeline-achievements">
           <div class="achievement"><strong>Deployment time:</strong> 1 day → 10 min · <strong>MTTR:</strong> 6 hrs → 5 min · <strong>Infra provisioning:</strong> 1 day → 30 min</div>
           <div class="achievement">Own full platform stack across dev, staging, and production: EKS lifecycle &amp; upgrades (v1.24–v1.33), ArgoCD GitOps, Concourse CI, Confluent for Kubernetes, and Confluent Cloud</div>
-          <div class="achievement">Manage secrets at scale via AWS Secrets Manager and External Secrets Operator (ESO) across 20+ services in development, staging, and production</div>
-          <div class="achievement">Led TLS/SSL certificate migration for all Kubernetes load balancers across four AWS accounts with zero service disruption</div>
-          <div class="achievement">Own platform security: CrowdStrike rollout via ArgoCD, FIPS 140-2 on Confluent for Kubernetes (GovCloud), Log4j CVE remediation, Snyk vulnerability management</div>
-          <div class="achievement">Deployed KEDA event-driven autoscaling across all clusters via ArgoCD; built full Concourse CI observability with Prometheus, RDS monitoring, and New Relic dashboards</div>
+          <div class="achievement">Manage secrets at scale via AWS Secrets Manager and External Secrets Operator (ESO) across 20+ services</div>
+          <div class="achievement">Led TLS/SSL certificate migration across four AWS accounts with zero service disruption</div>
+          <div class="achievement">Own platform security: CrowdStrike rollout via ArgoCD, FIPS 140-2 on Confluent (GovCloud), Log4j/Snyk remediation</div>
+          <div class="achievement">Deployed KEDA event-driven autoscaling across all clusters; built Concourse CI observability with Prometheus and New Relic</div>
+          <div class="achievement">Integrated AI-augmented tooling into platform workflows — AI-assisted Terraform development, agentic code review, and MCP server integrations</div>
         </div>
       </div>
       <div class="timeline-item">
@@ -234,10 +297,10 @@
         <div class="timeline-company">TRIMBLE · REMOTE</div>
         <div class="timeline-body">Grew from individual contributor to platform owner over 5 years, driving the shift from manual deployments to fully automated, GitOps-driven infrastructure.</div>
         <div class="timeline-achievements">
-          <div class="achievement">Provisioned and administered Concourse CI and Jenkins, establishing reusable pipeline templates (build, test, multi-environment promotion) that became the org-wide standard for Kubernetes deployments</div>
-          <div class="achievement">Drove Kubernetes adoption across engineering — deploying Helm charts for platform services (Kong API gateway, Confluent, ingress controllers, monitoring tooling) and supporting migration of 15–20 services from virtual machines to EKS</div>
-          <div class="achievement">Pioneered Terraform IaC adoption — authored EKS, RDS, IAM, and S3 modules that replaced manual AWS console changes and eliminated configuration drift across development, staging, and production</div>
-          <div class="achievement">Implemented Okta SSO for Jenkins and ArgoCD; established AWS Secrets Manager as the org-wide secrets standard — the foundation for the current secrets infrastructure</div>
+          <div class="achievement">Provisioned and administered Concourse CI and Jenkins, establishing reusable pipeline templates that became the org-wide standard for Kubernetes deployments</div>
+          <div class="achievement">Drove Kubernetes adoption — deploying Helm charts for Kong, Confluent, ingress controllers, monitoring — supporting migration of 15–20 services from VMs to EKS</div>
+          <div class="achievement">Pioneered Terraform IaC — authored EKS, RDS, IAM, and S3 modules replacing manual console changes and eliminating configuration drift</div>
+          <div class="achievement">Implemented Okta SSO for Jenkins and ArgoCD; established AWS Secrets Manager as the org-wide secrets standard</div>
         </div>
       </div>
       <div class="timeline-item">
@@ -259,14 +322,21 @@
           <div class="achievement">Designed Jenkins + AnthillPro pipelines across 10+ application teams</div>
         </div>
       </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header"><div class="timeline-role">Network &amp; Systems Administrator</div><div class="timeline-dates">JUL 2011 — JAN 2013</div></div>
+        <div class="timeline-company">TRAX USA CORPORATION · COCONUT GROVE, FL</div>
+        <div class="timeline-body">Managed IT infrastructure including application servers, VoIP systems, and network operations. Maintained backup and disaster recovery for business continuity.</div>
+      </div>
     </div>
   </section>
 
+  <!-- ═══════════ RESUME ═══════════ -->
   <section id="resume">
     <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Resume</h2><div class="section-line"></div></div>
     <div class="resume-viewer">
       <div class="resume-toolbar">
-        <div class="resume-toolbar-left">Michael L. Lopez &nbsp;&middot;&nbsp; <span>Senior Platform Engineer</span></div>
+        <div class="resume-toolbar-left">Michael L. Lopez &nbsp;&middot;&nbsp; <span>Senior DevOps Engineer</span></div>
         <div class="resume-actions">
           <button class="resume-btn" id="prevPage" title="Previous page">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
@@ -294,10 +364,11 @@
     </div>
   </section>
 
+  <!-- ═══════════ CONTACT ═══════════ -->
   <section id="contact">
     <div class="contact-inner">
       <h2 class="contact-title">Let's work<br/>together.</h2>
-      <p class="contact-sub">Open to senior platform engineering roles, DevOps consulting engagements, and conversations about cloud-native infrastructure. Remote only.</p>
+      <p class="contact-sub">Open to senior platform engineering and DevOps roles, consulting engagements, and conversations about cloud-native infrastructure. Remote only.</p>
       <div class="contact-links">
         <button class="contact-link" id="emailCopyBtn" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -316,7 +387,7 @@
   </section>
 
   <footer>
-    <div class="footer-text">&#169; 2026 <span class="footer-accent">Michael L. Lopez</span></div>
+    <div class="footer-text">&copy; 2026 <span class="footer-accent">Michael L. Lopez</span></div>
     <div class="footer-text">Built with intention &middot; Florida</div>
   </footer>
 
@@ -324,9 +395,7 @@
   (function() {
     'use strict';
 
-    // EMAIL — split into parts so Cloudflare cannot detect or mangle it
-    var e = ['michael', 'flashlopez', 'dev'].join('\x40').replace('\x40', '@').replace(/(\w+)$/, function(m){ return '.' + m; });
-    // Rebuild: michael + @ + flashlopez + . + dev
+    // EMAIL
     var emailAddr = 'michael' + String.fromCharCode(64) + 'flashlopez.dev';
     var btn = document.getElementById('emailCopyBtn');
     var lbl = document.getElementById('emailBtnText');
@@ -350,7 +419,7 @@
     }
 
     // CUSTOM CURSOR — non-Firefox only
-    if (!/firefox/i.test(navigator.userAgent)) {
+    if (!/firefox/i.test(navigator.userAgent) && window.innerWidth > 768) {
       document.body.classList.add('has-custom-cursor');
       var cur = document.getElementById('cursor');
       var ring = document.getElementById('cursorRing');
@@ -365,8 +434,8 @@
         requestAnimationFrame(tick);
       })();
       document.querySelectorAll('a, button').forEach(function(el) {
-        el.addEventListener('mouseenter', function() { cur.style.width='16px';cur.style.height='16px';ring.style.width='52px';ring.style.height='52px';ring.style.opacity='.3'; });
-        el.addEventListener('mouseleave', function() { cur.style.width='10px';cur.style.height='10px';ring.style.width='36px';ring.style.height='36px';ring.style.opacity='.5'; });
+        el.addEventListener('mouseenter', function() { cur.style.width='14px';cur.style.height='14px';ring.style.width='50px';ring.style.height='50px';ring.style.opacity='.25'; });
+        el.addEventListener('mouseleave', function() { cur.style.width='8px';cur.style.height='8px';ring.style.width='34px';ring.style.height='34px';ring.style.opacity='.4'; });
       });
     }
 
@@ -406,7 +475,7 @@
   })();
   </script>
 
-  <!-- PDF.js — renders PDF as canvas, works in Chrome, Firefox, Safari, Edge -->
+  <!-- PDF.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
   <script>
   (function() {
