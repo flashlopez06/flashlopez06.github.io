@@ -102,6 +102,7 @@
     .stack-tag:hover { background:var(--accent-dim);border-color:rgba(74,240,168,.3);color:var(--accent); }
     .stack-tag.hot { border-color:rgba(91,159,255,.35);color:var(--accent2);background:rgba(91,159,255,.05); }
     .stack-tag.ai { border-color:rgba(255,180,50,.35);color:#ffb432;background:rgba(255,180,50,.05); }
+    .stack-full-width { grid-column: 1 / -1; }
 
     /* ── TIMELINE ── */
     .timeline { position:relative;padding-left:2rem; }
@@ -244,7 +245,7 @@
       <div class="about-text">
         <p>I'm a Senior DevOps Engineer based in <strong>Florida</strong>, working fully remote, specializing in <strong>platform engineering, cloud-native infrastructure, and GitOps automation</strong>. My work sits at the intersection of what developers need to ship confidently and what operations teams need to sleep at night.</p>
         <p>Before moving into DevOps, I spent 8 years in application support and operations — which means I understand production systems from the inside out. I don't just build pipelines; I build systems that are operable, documented, and designed to be handed off cleanly.</p>
-        <p>Currently I own the full platform stack: <strong>Kubernetes (EKS), ArgoCD, Concourse CI, Confluent/Kafka,</strong> and <strong>Terraform-based infrastructure provisioning</strong> across multiple AWS accounts and environments. I'm also actively integrating <strong>AI-augmented tooling</strong> into platform workflows — using AI-assisted IaC development, agentic code review, and MCP integrations to accelerate infrastructure delivery.</p>
+        <p>Currently I own the full platform stack: <strong>Kubernetes (EKS), ArgoCD, Concourse CI, Kong Gateway, Kafka (migrating from Confluent to AWS MSK),</strong> and <strong>Terraform-based infrastructure provisioning</strong> across multiple AWS accounts and environments. I'm also actively integrating <strong>AI-augmented tooling</strong> into platform workflows — using AI-assisted IaC development, agentic code review, and MCP integrations to accelerate infrastructure delivery.</p>
         <p>I hold a <strong>BS in Computer Engineering from the University of Miami</strong> and am pursuing AWS Solutions Architect and CKA certifications.</p>
       </div>
       <div class="about-cards">
@@ -264,11 +265,11 @@
     <div class="stack-grid">
       <div class="stack-category"><div class="stack-cat-label">Cloud &amp; Infrastructure</div><div class="stack-tags"><span class="stack-tag hot">AWS</span><span class="stack-tag hot">Kubernetes (EKS)</span><span class="stack-tag">Docker</span><span class="stack-tag">Linux</span></div></div>
       <div class="stack-category"><div class="stack-cat-label">IaC &amp; Automation</div><div class="stack-tags"><span class="stack-tag hot">Terraform</span><span class="stack-tag">Helm</span><span class="stack-tag">Shell/Bash</span><span class="stack-tag">Python</span></div></div>
-      <div class="stack-category"><div class="stack-cat-label">CI/CD &amp; GitOps</div><div class="stack-tags"><span class="stack-tag hot">ArgoCD</span><span class="stack-tag">Concourse CI</span><span class="stack-tag">Jenkins</span><span class="stack-tag">Helm Charts</span></div></div>
+      <div class="stack-category"><div class="stack-cat-label">CI/CD &amp; GitOps</div><div class="stack-tags"><span class="stack-tag hot">ArgoCD</span><span class="stack-tag">Concourse CI</span><span class="stack-tag">Jenkins</span><span class="stack-tag">Helm Charts</span><span class="stack-tag">Kong Gateway</span><span class="stack-tag">ExternalDNS</span></div></div>
       <div class="stack-category"><div class="stack-cat-label">Observability</div><div class="stack-tags"><span class="stack-tag">Sumo Logic</span><span class="stack-tag">New Relic</span><span class="stack-tag">Grafana</span><span class="stack-tag">Prometheus</span><span class="stack-tag">PagerDuty</span><span class="stack-tag">CloudWatch</span></div></div>
-      <div class="stack-category"><div class="stack-cat-label">Event Streaming</div><div class="stack-tags"><span class="stack-tag hot">Confluent Cloud</span><span class="stack-tag">Confluent for K8s</span><span class="stack-tag">Apache Kafka</span></div></div>
-      <div class="stack-category"><div class="stack-cat-label">Security &amp; Identity</div><div class="stack-tags"><span class="stack-tag">CrowdStrike</span><span class="stack-tag">Snyk</span><span class="stack-tag">Okta SSO</span><span class="stack-tag">FIPS 140-2</span><span class="stack-tag">ESO</span></div></div>
-      <div class="stack-category" style="grid-column:span 3"><div class="stack-cat-label">AI &amp; Augmented Development</div><div class="stack-tags"><span class="stack-tag ai">Cursor AI</span><span class="stack-tag ai">MCP Integrations</span><span class="stack-tag ai">AI-Assisted IaC</span><span class="stack-tag ai">Agentic Code Review</span></div></div>
+      <div class="stack-category"><div class="stack-cat-label">Event Streaming</div><div class="stack-tags"><span class="stack-tag hot">AWS MSK</span><span class="stack-tag hot">Apache Kafka</span><span class="stack-tag">Confluent Cloud</span><span class="stack-tag">Confluent for K8s</span></div></div>
+      <div class="stack-category"><div class="stack-cat-label">Security &amp; Identity</div><div class="stack-tags"><span class="stack-tag">CrowdStrike</span><span class="stack-tag">Snyk</span><span class="stack-tag">Mend</span><span class="stack-tag">Okta SSO</span><span class="stack-tag">FIPS 140-2</span><span class="stack-tag">ESO</span></div></div>
+      <div class="stack-category stack-full-width"><div class="stack-cat-label">AI &amp; Augmented Development</div><div class="stack-tags"><span class="stack-tag ai">Cursor AI</span><span class="stack-tag ai">MCP Integrations</span><span class="stack-tag ai">AI-Assisted IaC</span><span class="stack-tag ai">Agentic Code Review</span></div></div>
     </div>
   </section>
 
@@ -288,6 +289,9 @@
           <div class="achievement">Led TLS/SSL certificate migration across four AWS accounts with zero service disruption</div>
           <div class="achievement">Own platform security: CrowdStrike rollout via ArgoCD, FIPS 140-2 on Confluent (GovCloud), Log4j/Snyk remediation</div>
           <div class="achievement">Deployed KEDA event-driven autoscaling across all clusters; built Concourse CI observability with Prometheus and New Relic</div>
+          <div class="achievement">Leading migration of all Kafka workloads from Confluent Platform to AWS MSK — authored the Terraform module, provisioned clusters with mTLS across GovCloud and commercial environments, coordinating phased cutover across 15+ environments</div>
+          <div class="achievement">Modernized Concourse CI: migrated databases to RDS PostgreSQL (11 → 17 upgrade), upgraded to latest stable versions, and built FIPS-compliant container images</div>
+          <div class="achievement">Manage Kong API Gateway lifecycle across all environments, including upgrades from 3.4 to 3.10 with dedicated nodegroup taints and tolerations</div>
           <div class="achievement">Integrated AI-augmented tooling into platform workflows — AI-assisted Terraform development, agentic code review, and MCP server integrations</div>
         </div>
       </div>
@@ -300,6 +304,7 @@
           <div class="achievement">Provisioned and administered Concourse CI and Jenkins, establishing reusable pipeline templates that became the org-wide standard for Kubernetes deployments</div>
           <div class="achievement">Drove Kubernetes adoption — deploying Helm charts for Kong, Confluent, ingress controllers, monitoring — supporting migration of 15–20 services from VMs to EKS</div>
           <div class="achievement">Pioneered Terraform IaC — authored EKS, RDS, IAM, and S3 modules replacing manual console changes and eliminating configuration drift</div>
+          <div class="achievement">Deployed ExternalDNS across all clusters with Route 53 private hosted zones, automating DNS record management for Kubernetes services</div>
           <div class="achievement">Implemented Okta SSO for Jenkins and ArgoCD; established AWS Secrets Manager as the org-wide secrets standard</div>
         </div>
       </div>
