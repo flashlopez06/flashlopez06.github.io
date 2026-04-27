@@ -43,11 +43,6 @@
     body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.65; overflow-x: hidden; }
 
     /* ── CURSOR ── */
-    .cursor { width:8px;height:8px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .12s,height .12s;display:none; }
-    .cursor-ring { width:34px;height:34px;border:1.5px solid rgba(74,240,168,.5);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4;transition:width .18s,height .18s,opacity .18s;display:none; }
-    body.has-custom-cursor { cursor: none; }
-    body.has-custom-cursor a, body.has-custom-cursor button { cursor: none; }
-    body.has-custom-cursor .cursor, body.has-custom-cursor .cursor-ring { display: block; }
 
     /* ── NAV ── */
     nav { position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 4rem;border-bottom:1px solid rgba(26,26,42,.6);background:rgba(8,8,13,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px); }
@@ -189,15 +184,13 @@
     @media(max-width:600px){
       .nav-links{display:none}
       .nav-toggle{display:inline-flex}
-      .hero-stats{display:none}
+      .hero-stats{position:static;flex-direction:row;gap:1.5rem;margin-top:2rem;justify-content:flex-start}
+      .stat-num{font-size:2rem}
       .stack-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
   <nav>
     <a href="#home" class="nav-logo">ML<span class="blink">_</span></a>
     <ul class="nav-links">
@@ -224,10 +217,10 @@
     <div class="hero-glow"></div>
     <div class="hero-glow-2"></div>
     <div class="hero-content">
-      <div class="hero-tag">Open to platform engineering &amp; DevOps opportunities</div>
+      <div class="hero-tag">Open to platform engineering, AI architecture &amp; DevOps opportunities</div>
       <h1 class="hero-name">Michael<br/><span class="outline">Lopez</span></h1>
       <p class="hero-title">Senior DevOps Engineer &nbsp;/&nbsp; <strong>Platform Engineering &amp; Cloud Infrastructure</strong></p>
-      <p class="hero-desc">I build internal developer platforms that let engineering teams ship faster. 14 years turning complex cloud infrastructure into clean, automated systems — from EKS and ArgoCD to Terraform-driven provisioning at scale.</p>
+      <p class="hero-desc">I build internal developer platforms and AI-augmented engineering systems. 14 years of cloud infrastructure — EKS, ArgoCD, Terraform at scale — now combined with multi-agent orchestration, safety governance layers, and context engineering across production platform workflows.</p>
       <div class="hero-ctas">
         <a href="#contact" class="btn-primary">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -260,8 +253,7 @@
         <div class="about-card"><div class="about-card-title">Specialty</div><div class="about-card-text">Internal Developer Platforms (IDP) · GitOps · Cloud-Native Infrastructure</div></div>
         <div class="about-card"><div class="about-card-title">Cloud</div><div class="about-card-text">AWS (EKS, IAM, Secrets Manager, S3, RDS, CloudWatch)</div></div>
         <div class="about-card"><div class="about-card-title">Background</div><div class="about-card-text">6 yrs DevOps · 8 yrs App Support &amp; Ops · BS Computer Engineering, U of Miami</div></div>
-        <div class="about-card"><div class="about-card-title">AI Platform Engineering</div><div class="about-card-text">Multi-agent orchestration · Context engineering (6+ repos) · Safety governance layer · 56% token reduction via RTK proxy · MCP: Jira, GitHub, New Relic, Docker</div></div>
-        <div class="about-card"><div class="about-card-title">Pursuing</div><div class="about-card-text">AWS Solutions Architect – Associate · CKA</div></div>
+        <div class="about-card"><div class="about-card-title">AI Platform Engineering</div><div class="about-card-text">Multi-agent orchestration · Context engineering (6+ repos) · Safety governance layer · Memory schema design · MCP: Jira, GitHub, New Relic, Docker</div></div>
         <div class="about-card"><div class="about-card-title">Location</div><div class="about-card-text">Florida · Fully Remote · US Only</div></div>
       </div>
     </div>
@@ -277,7 +269,7 @@
       <div class="stack-category"><div class="stack-cat-label">Observability</div><div class="stack-tags"><span class="stack-tag">Sumo Logic</span><span class="stack-tag">New Relic</span><span class="stack-tag">Grafana</span><span class="stack-tag">Prometheus</span><span class="stack-tag">PagerDuty</span><span class="stack-tag">CloudWatch</span></div></div>
       <div class="stack-category"><div class="stack-cat-label">Event Streaming</div><div class="stack-tags"><span class="stack-tag hot">AWS MSK</span><span class="stack-tag hot">Apache Kafka</span><span class="stack-tag">Confluent Cloud</span><span class="stack-tag">Confluent for K8s</span></div></div>
       <div class="stack-category"><div class="stack-cat-label">Security &amp; Identity</div><div class="stack-tags"><span class="stack-tag">CrowdStrike</span><span class="stack-tag">Snyk</span><span class="stack-tag">Mend</span><span class="stack-tag">Okta SSO</span><span class="stack-tag">FIPS 140-2</span><span class="stack-tag">ESO</span></div></div>
-      <div class="stack-category stack-full-width"><div class="stack-cat-label">AI Platform Engineering</div><div class="stack-tags"><span class="stack-tag ai">Multi-Agent Orchestration</span><span class="stack-tag ai">Context Engineering</span><span class="stack-tag ai">Safety Governance</span><span class="stack-tag ai">Token Optimization</span><span class="stack-tag ai">Memory Schema Design</span><span class="stack-tag ai">MCP: Jira / GitHub / New Relic / Docker</span><span class="stack-tag ai">AI-Assisted IaC</span><span class="stack-tag ai">Agentic Code Review</span></div></div>
+      <div class="stack-category stack-full-width"><div class="stack-cat-label">AI Platform Engineering</div><div class="stack-tags"><span class="stack-tag ai">Multi-Agent Orchestration</span><span class="stack-tag ai">Context Engineering</span><span class="stack-tag ai">Safety Governance</span><span class="stack-tag ai">Memory Schema Design</span><span class="stack-tag ai">MCP: Jira / GitHub / New Relic / Docker</span><span class="stack-tag ai">AI-Assisted IaC</span><span class="stack-tag ai">Agentic Code Review</span></div></div>
     </div>
   </section>
 
@@ -302,7 +294,7 @@
           <div class="achievement">Manage Kong API Gateway lifecycle across all environments, including upgrades from 3.4 to 3.10 with dedicated nodegroup taints and tolerations</div>
           <div class="achievement"><strong>Multi-agent PR review system</strong> (4 agents): generalist orchestrator delegates to specialist Terraform and ArgoCD agents based on PR content; shipped as team-ready <em>ai-helper-agents</em> repo with README and install instructions</div>
           <div class="achievement"><strong>AI safety governance:</strong> global approval-gate catalog (prod deploys, IAM changes, destructive ops, mutating K8s operations) auto-applies to all agents; per-repo context files across <strong>6+ repos</strong> encode conventions, branch strategy, and naming patterns at session start</div>
-          <div class="achievement"><strong>AI unit economics:</strong> Rust-based token proxy (RTK) delivering <strong>56% token reduction</strong> across ~2M tokens processed; structured memory schema — 28 typed files with required fields and cross-referenced index</div>
+          <div class="achievement"><strong>AI memory architecture:</strong> structured memory schema — 28 typed files (user/feedback/project/reference) with required fields, write rules, and cross-referenced index; treats AI memory as a database with schema constraints</div>
         </div>
       </div>
       <div class="timeline-item">
@@ -403,7 +395,7 @@
 
   <footer>
     <div class="footer-text">&copy; 2026 <span class="footer-accent">Michael L. Lopez</span></div>
-    <div class="footer-text">Built with intention &middot; Florida</div>
+    <div class="footer-text">Florida &middot; Remote</div>
   </footer>
 
   <script>
@@ -430,27 +422,6 @@
           lbl.textContent = emailAddr;
           setTimeout(function() { lbl.textContent = 'Copy email'; }, 3500);
         }
-      });
-    }
-
-    // CUSTOM CURSOR — non-Firefox only
-    if (!/firefox/i.test(navigator.userAgent) && window.innerWidth > 768) {
-      document.body.classList.add('has-custom-cursor');
-      var cur = document.getElementById('cursor');
-      var ring = document.getElementById('cursorRing');
-      var mx = 0, my = 0, rx = 0, ry = 0;
-      document.addEventListener('mousemove', function(ev) {
-        mx = ev.clientX; my = ev.clientY;
-        cur.style.left = mx + 'px'; cur.style.top = my + 'px';
-      });
-      (function tick() {
-        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-        requestAnimationFrame(tick);
-      })();
-      document.querySelectorAll('a, button').forEach(function(el) {
-        el.addEventListener('mouseenter', function() { cur.style.width='14px';cur.style.height='14px';ring.style.width='50px';ring.style.height='50px';ring.style.opacity='.25'; });
-        el.addEventListener('mouseleave', function() { cur.style.width='8px';cur.style.height='8px';ring.style.width='34px';ring.style.height='34px';ring.style.opacity='.4'; });
       });
     }
 
