@@ -30,3 +30,21 @@ Everything lives in `index.html` — a single-file SPA with embedded CSS and Jav
 ## Deployment
 
 Push to `main` → GitHub Pages auto-deploys. Custom domain set via `CNAME` (flashlopez.dev).
+
+## Advisor Strategy (Opus)
+
+Spawn an Opus advisor before:
+- Any significant copy/positioning change (hero, about, section headers) — wrong framing undermines both job searches
+- Design direction decisions (palette, layout, typography)
+- Adding or removing content sections
+
+Call pattern:
+```
+Agent(
+  model="opus",
+  description="Opus advisor — [decision in 5 words]",
+  prompt="Context: portfolio site for $160-250K DevOps/AI-architect job search (active: Aplazo AI Strategy $225K, Ferrum Health SRE $160K).\nProblem: [specific decision]\nOptions: [list]\nQuestion: [single crisp question]\nRespond under 150 words. Plan only."
+)
+```
+
+Skip advisor for: typo fixes, metadata updates, PDF/DOCX swaps, CSS micro-tweaks that don't change visual direction.
