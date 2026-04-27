@@ -23,8 +23,8 @@ Then open http://localhost:8080.
 Everything lives in `index.html` — a single-file SPA with embedded CSS and JavaScript. No external JS dependencies.
 
 - **Styles**: CSS custom properties for theming, `clamp()` for fluid typography, CSS animations (`fadeUp`, `pulse`, `fadeLeft`) for entrance effects
-- **Palette**: `#4af0a8` (green accent), `#5b9fff` (blue accent), dark background
-- **Fonts**: Outfit, JetBrains Mono, DM Sans via Google Fonts
+- **Palette**: `#c8956c` (copper accent), `#d4a96a` (amber secondary), near-black background (`#0a0a0f`)
+- **Fonts**: Fraunces (display/serif), Inter (body/mono) via Google Fonts
 - **Analytics**: GA4 embedded in `<head>`
 
 ## Deployment
