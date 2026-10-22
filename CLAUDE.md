@@ -48,3 +48,13 @@ Agent(
 ```
 
 Skip advisor for: typo fixes, metadata updates, PDF/DOCX swaps, CSS micro-tweaks that don't change visual direction.
+
+## Resume PDF (must stay readable by hiring software)
+
+The PDF is made by Claude: open the `.docx` in Pages (Apple's word processor), export PDF. Pages joins letter pairs ("fl", "tf", "ti") into single glyphs that resume parsers drop — Lever read the email as `michael@ashlopez.dev` (2026-10-22). After every new export, run:
+
+```bash
+python3 tools/fix_resume_ligatures.py export.pdf Michael-Lopez-Resume.pdf
+pdftotext Michael-Lopez-Resume.pdf - | head -3   # must show michael@flashlopez.dev
+pdftotext Michael-Lopez-Resume.pdf - | grep -cE 'Pla orm|produc on'   # must be 0
+```
